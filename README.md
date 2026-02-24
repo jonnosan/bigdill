@@ -24,7 +24,7 @@ https://en.wikipedia.org/wiki/Algebraic_notation_(chess)
 A BGDL file (or record)  consists of:
 
 - A header containing zero or more metadata records about the game being described, followed by
-- zero or more detail records describing events in the game
+- zero or more game event detail records describing events in the game
 
 
 
@@ -47,9 +47,9 @@ Whitespace on either side of the colon is allowed but not required
 |B| B: Hills Hornets<br>B:HIL, Green|Name (or team code) of 'Team B' (sometimes called the Away team). Optionally, the team name/code may be followed by a comma and then the predominant colour of the jersey worn by this team in this game|
 
 
-## Events
+## Game Event Detail Records
 
-An event consists of:
+A Game Event Detail Records consists of:
 1. a Time Tag (wall clock, optionally inclusive of game clock)
 2. an Event Type Identifier
 3. Event Data

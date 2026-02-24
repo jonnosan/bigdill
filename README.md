@@ -88,8 +88,29 @@ Following the Time Tag, and whitespace, shall be an Event Type
 
 ### Regions
 
-Regions of the court are named according to the following diagram
-![basketball court geography]("img/basketball_court_regions.png")
+Regions of the court are named according to the following diagram 
+
+![basketball court geography](https://raw.githubusercontent.com/jonnosan/bigdill/refs/heads/main/img/basketball_court_regions.png)
+
+
+Region are identified by an abbreviation, according to the following table:
+
+|Abbreviation|Region|2 or 3 pt zone?|
+|-|-|-|
+|LC|Left Corner| 3pt zone|
+|LM|Left Mid| 2pt zone|
+|LP|Left Paint| 2pt zone|
+|LW|Left Wing| 3pt zone|
+|LE|Left Elbow| 2pt zone|
+|TC|Top Centre| 3pt zone|
+|TM|Top Mid| 2pt zone|
+|TP|Top Paint| 2pt zone|
+|RIM|Rim| 2pt zone|
+|RC|Right Corner| 3pt zone|
+|RM|Right Mid| 2pt zone|
+|RP|Right Paint| 2pt zone|
+|RW|Right Wing| 3pt zone|
+|RE|Right Elbow| 2pt zone|
 
 
 

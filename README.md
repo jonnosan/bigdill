@@ -1,4 +1,4 @@
-# BGDL (Bigdill)  - a language for describing basketball games
+# BGDL (BigDill)  - a language for describing basketball games
 
 ## Purpose
 BGDL is intended to allow a skilled user to quickly record events in a basketball game (in realtime, or while watching a video of the game), in a format that will allow later processing to:
@@ -16,12 +16,6 @@ BGDL is intended to allow a skilled user to quickly record events in a basketbal
 ## Inspirations
 https://www.willhart.io/post/basketball-analysis-software/#building-a-tagging-language 
 https://en.wikipedia.org/wiki/Algebraic_notation_(chess) 
-
-## Non-Goals
-|Non-Goal|Rationale|
-| --- | --- |
-|Actions outside FIBA stats manual (e.g. inbounds, passes,names of plays) |Not required for initial use cases, could be added in future|
-|Easy entry by novices| It's assumed that only advanced users would directly enter BGDL, while others use a GUI front end that generates BGDL in the background|
 
 
 

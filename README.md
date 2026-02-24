@@ -57,7 +57,7 @@ Whitespace on either side of the colon is allowed but not required
 
 An event consists of:
 1. a Time Tag (wall clock, optionally inclusive of game clock)
-2. an Event Type  
+2. an Event Type Identifier
 3. Event Data
 
 ### Time Tags
@@ -80,10 +80,37 @@ Whenever a Game Clock time is specified, it shall be in the form "P<period numbe
 In a FIBA standard game, the tipoff would occur at 'P1T10:00', and 'P6T00:03.27' would represent 3.27 seconds remaining in a 2nd overtime period.
 
 
-### Event Types
-Following the Time Tag, and whitespace, shall be an Event Type
+### Event Type Identifiers
+An Event Type Identifier is a short code which specifies the type of event being recorded.
 
-|Event Type| Meaning|
+#### Game Clock Events
+These events are used to start/stop the game clock, and synchronize the game clock and wall clock
+|Event Type Identifier|Meaning|Event Data|Example Detail Record|
+|-|-|-|-|
+|start| Game Clock is started|n/a|01:02 P1T10:00 start<br>01:12 start|
+|stop| Game Clock is stopped (i.e. ref has blown whistle)|n/a|01:12 stop<br>01:53 P1T9:21 STOP|
+|sync|Game state is unchanged but is used only to synchronize the game clock and wall clock. |n/a|31:27 p2t05:16 sync|
+
+#### Violations
+These events are used to record a violation against a team or player. Whenever a violation is recorded, the game clock is implicitly stopped.
+Game Date for such events are either a single team (identified by letter 'A' for "Team A"/Home team or 'B' for "Team B"/Away team, OR an individual player, identified by a letter (A or B) followed by digits representing the jersey number of the player e.g "A 1" or "b27".
+|Event Type Identifier|Meaning|Event Data|Example Detail Record|
+|-|-|-|-|
+|travel|Travel|Team or Player who was called for travelling| 02:41 travel b27|
+|out|Out of Bounds| Team or Player that last touched the ball before it went out of bounds | 02:41 out A|
+|back|Backcourt Violation| Team or player touched the ball after it crossed back in to the backcourt | 12:47 P1T7:17 back B9|
+|double|Double Dribble| Team or player that double dribbled|8:16 double A4|
+|shotclock|Shot Clock violation| Team in possession when shot clock expired|8:16 shotclock b|
+|3s|Three Second violation - too long in restricted area| Team or player penalised|8:16 3s A 8|
+|5s|Five Second violation - holding ball too long before inbounding or while closely guarded| Team or player penalised|8:16 5s A 8|
+|8s|Eight Second violation - Taking too long to advance ball over halfwy| Team or player penalised|8:16 8s A 8|
+
+
+
+
+
+
+
 
 
 ### Regions

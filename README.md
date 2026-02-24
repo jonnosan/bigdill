@@ -60,8 +60,11 @@ An event consists of:
 2. an Event Type  
 3. Event Data
 
-### Time Tag
-Each event record starts with the 'wall clock' time of the event.
+### Time Tags
+A Time Tag consists of a Wall Clock value, and (optionally) whitespace followed by a Game Clock value
+
+
+#### Wall Clock
 
 Wall clock may be recorded in absolute terms (for example as a full ISO-8601 datetime), or relative to some base time (for example, the start of a video - where an event with time tag '3:51' occurs at 3 minutes and 51 seconds into that video). 
 
@@ -71,10 +74,22 @@ Optionally, a time tag can contain one or 2 digits of hours, and/or fractions of
 
 The wall clock MAY be *preceded* by whitespace, but there MUST NOT be whitespace *within* the wall clock value. e.g. '  03:12' is valid, but '03 : 12' is not.
 
+#### Game Clock
+After any Wall Clock tag, seperated with whitespace, a Game Clock may be specified.
+Whenever a Game Clock time is specified, it shall be in the form "P<period number>T<time remaining in period>"
+In a FIBA standard game, the tipoff would occur at 'P1T10:00', and 'P6T00:03.27' would represent 3.27 seconds remaining in a 2nd overtime period.
 
 
+### Event Types
+Following the Time Tag, and whitespace, shall be an Event Type
+
+|Event Type| Meaning|
 
 
+### Regions
+
+Regions of the court are named according to the following diagram
+![basketball court geography]("img/basketball_court_regions.png")
 
 
 

@@ -221,6 +221,3 @@ Note that per FIBA statistics definitions, when the 'Alternating Possession' rul
 |-|-|-|
 |to|Turnover|"51:32 TO B43"| 
 |stl|Steal|"51:32 TO B43 STL A1"|
-
-
-$$

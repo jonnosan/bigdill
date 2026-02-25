@@ -232,15 +232,7 @@ In certain exceptional situations, it is possible for the 'official' score at a 
 - When a portion of a game video is missing
 - When an error is made by the official in-venue scorers such that (for example) points for baskets are not added to the scoreboaerd, despite the referee signalling they have been succesful, or 3 points are added to the score, despite the referee signalling only 2 points shall be added.
 
-The reason for this is to allow subsequent analsys of the events in the game record in a way that accounts for both the most accurate record of individual player statistics, as well as accounting for the real in-game situation in which events arise.
-
-For example, consider a game where in the first quarter of a game, player A1 shoots a 2 pointer basket that (should) puts her team up 20-10. Due to scorer error, the in venue scoreboard is not updated, so remains 18-10
-
-Then in the final seconds of the game, the in-venue scoreboard (which has never been corrected), is showing the score as 76-79, i.e. team B is ahead. At this point, player A2 makes a 3 point buzzer beater basket and the game goes to overtime, where team A is eventually succesfull. In the context of the game (where team A was behind at the point player A2 took the 3 point, and so would have lost) this is clearly a clutch play.
-
-If we were to credit A1 with the initial 2 pointer, without adjusting the score to record the subsequent scoreboard error, then A2's buzzer beater would not be found if we were to later search game date for (e.g.) "baskets scored in final 4 seconds of a game to equalize or go ahead" 
-
-So a score override  can be recorded as a "score" event type, with the Event Date being a number representing Team A score, a dash ('-') and then a number representing Team B score (with any whitespace ignored)
+A score override  is recorded as a "score" event type, with the Event Date being a number representing Team A score, a dash ('-') and then a number representing Team B score (with any whitespace ignored)
 
 |Event Type Identifier|Meaning|Example|
 |-|-|-|

@@ -1,0 +1,41 @@
+
+This app will be used to create a 'play by play' description of a basketball game (using the BGDL file format as defined in https://github.com/jonnosan/bigdill/blob/main/BGDL.md)
+
+In the first screen (the 'setup' screen) ,the user will specify the following information about a basketball game:
+- the name of the game
+- the date (optionally including time) of the game
+- the name and jersey colour of 'Team A'
+- the name and jersey colour of 'Team B'
+- the number (drop down list of 2 and 4, with 4 as default) and duration (drop down list of 8,10,12,20 minutes, with 10 as default) of ordinary periods in the game, and the duration (default 5 mins) of any overtime period
+- the URL of a video of the game. This may be a link to any file that can be processed via videojs (possibly via inclusion of additional videojs techs such as the youtube extension). i.e. any of the following are valid links: youtube videos (e.g. https://www.youtube.com/watch?v=odm3WiK5wC4),  links to a HLS (m3u8) or DASH (mpd) stream, or a link to a .MOV or .MP4 file. 
+- a boolean called 'running clock?' which defaults to no/false.
+- there are also three buttons - one called "Save", one called 'Load' and one called "Details..."
+- When 'Save' is clicked, it will open a dialogue box that allows a new file (with .bgdl extension) to be specified, and a BGDL file (consisting of header records only, with the data entered into the 'Setup' screen'). 
+- When 'Load' is clicked,it will open a dialogue box that allows an existing file (with .bgdl extension) to be specified, which will be loaded, and the header records in it will be used to populate the fields in the 'Setup' screen.
+- The 'Details...' button, when clicked, closes the 'Setup' screen and opens the 'Game Data' screen.
+
+The 'Game Data' screen has the following sections
+- at the top is the 'Game Info' section, which shows the information entered in the 'setup' screen
+- below that is a Game Clock section, showing the current Game Clock value. 
+- in the middle is a video playback canvas, which shows the video specified in the 'setup' screen. the status bar for the video playback canvas will show both elapsed time and remaining time. There will be controls to stop and start playback, and jump forward and back 5 seconds and 30 seconds, and to set playback speed to 0.25, 1.0, 1.5 and 2.0 
+- at the bottom is a "Data Entry" section, which shows up to 15 "Game Event Details Records", split into three columns - "Time Tag", "Event Data" and "Event Description". 
+- The "Game Event Detail Records" to be displayed are based on a sliding window, centred on the current Video playback position. That means there will be up to 7 records with a "Wall Clock" value prior to the current video playback time, one  highlighted row ("Current Record") for the current playback time, and up to 7 records with a wall clock value after the current playback time.
+As each "Game Event Detail Record" is displayed, the "Time Tag" column is populated from the 'Time Tag' of the detail record (.e.g '03:17 P1T09:15'). The "Event Data" will show the game data in 'BGDL' format (e.g. "2PT- A5 @RM"). The "Event Description"  is derived from the BGDL data (e.g. "2 Point Miss - Team A Player 5 - Right Mid". 
+The 'Game Data' Screen has two modes - "Playback" (which is the initial mode, when the screen is first displayed) and "Record Entry".
+
+In "Playback" mode, the video is controlled by the playback controls already specified, and left and right arrows move the playback time backwards and forwards in 5 second increments.
+While the video is playing, or playback time is moved forward and back, the records selected for the "Data Entry" section will change accordingly, to show the records before and after the current playback time.
+
+While the video is playing, the 'Game Clock' section is continuosly updated to be synchronised with the current video playback time.
+
+#### TBD - DESCRIBE HOW TO SYNC GAME CLOCK ##### 
+
+When the space bar will halt the playback, and change to "Record Entry" mode.
+
+In "Record Entry" mode, keyboard focus shifts to the "Current Record", and the "Time Tag" and "Event Data" fields in that row become editable. If there was a previously entered record with a "Wall Clock" value that matches (within 0.01 of a second) the current video Playback time, then the "Time Tag" and "Event Data" fields shall be set to that record, otherwise the "Time Tag" value shall be set to be a valid BGDL Time Tag consisting of a Wall Clock value set to the current video playback time (with a precision of 2 decimal places) and a Game Clock value computed
+
+
+
+Below the 'Recent Entries' are two text input areas which can be alternated between by pressing 'tab'. The first input (Time Tag input) allows entry of a Time Tag, and will default to a Tag Time containing the current video playback time (as wall clock time) and the current computed Game Clock time. The second input (Event Data input) allows entry of an Event Data Identifier. The third column ("Event Description") is updated after every key press in the "Event Data" input, and shows the 'human readable' description (if one can be calculated) for whatever Event Data has been entered so far.
+
+

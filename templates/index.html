@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BigDill</title>
+  <link rel="stylesheet" href="https://vjs.zencdn.net/8.10.0/video-js.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=11">
+</head>
+<body>
+
+<!-- ── Game List Screen ─────────────────────────────────────────────────────── -->
+<div id="gamelist-screen" class="screen active">
+  <header class="app-header">
+    <h1>BigDill</h1>
+    <div class="header-actions">
+      <button id="btn-new-game" class="btn btn-primary">New Game</button>
+      <label class="btn btn-secondary">
+        Import .bgdl
+        <input type="file" id="import-file-input" accept=".bgdl,.txt" hidden>
+      </label>
+    </div>
+  </header>
+  <main class="gamelist-main">
+    <table id="games-table">
+      <thead>
+        <tr>
+          <th>Game</th>
+          <th>Date</th>
+          <th>Teams</th>
+          <th>Events</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="games-tbody">
+        <tr id="games-empty-row"><td colspan="5">No games yet. Create one or import a .bgdl file.</td></tr>
+      </tbody>
+    </table>
+  </main>
+</div>
+
+<!-- ── Game Setup Screen ────────────────────────────────────────────────────── -->
+<div id="setup-screen" class="screen">
+  <header class="app-header">
+    <h1>Game Setup</h1>
+    <div class="header-actions">
+      <button id="btn-setup-cancel" class="btn btn-secondary">Cancel</button>
+      <button id="btn-setup-save" class="btn btn-primary">Save &amp; Start</button>
+    </div>
+  </header>
+  <main class="setup-main">
+    <section class="setup-section">
+      <h2>Game Details</h2>
+      <div class="field-grid">
+        <label>Game Name <span class="required-mark">*</span><input id="f-game-name" type="text" placeholder="e.g. Waratah 1 Youth Men Grand Final 2025"></label>
+        <label>Game ID <input id="f-game-id" type="text" placeholder="e.g. YLM1::776812"></label>
+        <label>Date <input id="f-date" type="datetime-local"></label>
+        <label>Periods
+          <select id="f-periods-format">
+            <option value="4x10">4 × 10 min</option>
+            <option value="2x20">2 × 20 min</option>
+            <option value="4x8">4 × 8 min</option>
+          </select>
+        </label>
+        <label>Overtime (minutes) <input id="f-overtime" type="text" value="5" placeholder="5"></label>
+        <div class="video-url-field" style="grid-column: 1 / -1">
+          <label>Video URL <span class="required-mark">*</span>
+            <div class="video-url-row">
+              <input id="f-video" type="url" placeholder="YouTube or direct MP4/HLS/DASH URL">
+              <button type="button" id="btn-preview-video" class="btn btn-secondary btn-sm">Preview</button>
+            </div>
+          </label>
+          <div id="video-preview-area" class="video-preview-area" hidden></div>
+        </div>
+        <label class="checkbox-label">
+          <input id="f-running-clock" type="checkbox">
+          Running Clock? (uncheck for FIBA — auto-stop on fouls/violations)
+        </label>
+      </div>
+    </section>
+
+    <section class="setup-section">
+      <h2>Teams</h2>
+      <div class="field-grid">
+        <label>Team A Name <input id="f-team-a-name" type="text" placeholder="e.g. Bankstown Bruins"></label>
+        <label>Team A Colour <div class="colour-select" id="f-team-a-colour"></div></label>
+        <label>Team B Name <input id="f-team-b-name" type="text" placeholder="e.g. Hills Hornets"></label>
+        <label>Team B Colour <div class="colour-select" id="f-team-b-colour"></div></label>
+      </div>
+    </section>
+
+    <section class="setup-section">
+      <h2>Rosters</h2>
+      <div class="roster-panels">
+        <!-- Team A Roster -->
+        <div class="roster-panel" id="roster-panel-a">
+          <button class="roster-toggle" data-team="a">
+            Team A Roster <span class="roster-count" id="roster-count-a">(0 players)</span>
+            <span class="toggle-arrow">▶</span>
+          </button>
+          <div class="roster-body" id="roster-body-a" hidden>
+            <table class="roster-table">
+              <thead><tr><th>#</th><th>Name</th><th>ID</th><th></th></tr></thead>
+              <tbody id="roster-tbody-a"></tbody>
+            </table>
+            <div class="roster-add-form" id="roster-add-form-a">
+              <input type="text" class="roster-input-jersey" placeholder="#">
+              <input type="text" class="roster-input-name" placeholder="Name">
+              <input type="text" class="roster-input-pid" placeholder="Player ID">
+              <button class="btn btn-sm" data-team="a" data-action="add-player">Add</button>
+            </div>
+            <div class="roster-paste-area" id="roster-paste-area-a" hidden>
+              <textarea class="roster-paste-input" placeholder="jersey,name,playerid (one per line)"></textarea>
+              <div class="roster-paste-buttons">
+                <button class="btn btn-sm" data-team="a" data-action="paste-apply">Apply</button>
+                <button class="btn btn-sm btn-secondary" data-team="a" data-action="paste-cancel">Cancel</button>
+              </div>
+            </div>
+            <div class="roster-actions">
+              <button class="btn btn-sm btn-secondary" data-team="a" data-action="paste-open">Paste Roster</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team B Roster -->
+        <div class="roster-panel" id="roster-panel-b">
+          <button class="roster-toggle" data-team="b">
+            Team B Roster <span class="roster-count" id="roster-count-b">(0 players)</span>
+            <span class="toggle-arrow">▶</span>
+          </button>
+          <div class="roster-body" id="roster-body-b" hidden>
+            <table class="roster-table">
+              <thead><tr><th>#</th><th>Name</th><th>ID</th><th></th></tr></thead>
+              <tbody id="roster-tbody-b"></tbody>
+            </table>
+            <div class="roster-add-form" id="roster-add-form-b">
+              <input type="text" class="roster-input-jersey" placeholder="#">
+              <input type="text" class="roster-input-name" placeholder="Name">
+              <input type="text" class="roster-input-pid" placeholder="Player ID">
+              <button class="btn btn-sm" data-team="b" data-action="add-player">Add</button>
+            </div>
+            <div class="roster-paste-area" id="roster-paste-area-b" hidden>
+              <textarea class="roster-paste-input" placeholder="jersey,name,playerid (one per line)"></textarea>
+              <div class="roster-paste-buttons">
+                <button class="btn btn-sm" data-team="b" data-action="paste-apply">Apply</button>
+                <button class="btn btn-sm btn-secondary" data-team="b" data-action="paste-cancel">Cancel</button>
+              </div>
+            </div>
+            <div class="roster-actions">
+              <button class="btn btn-sm btn-secondary" data-team="b" data-action="paste-open">Paste Roster</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ── Game Events Screen ───────────────────────────────────────────────────── -->
+<div id="gameevents-screen" class="screen">
+  <!-- Scoreboard -->
+  <div id="scoreboard-bar">
+    <div class="score-team" id="score-team-a">
+      <span class="team-name" id="sb-team-a">Team A</span>
+      <span class="team-score" id="sb-score-a">0</span>
+    </div>
+    <div class="score-center">
+      <div class="clock-info" id="sb-clock">P1 10:00</div>
+      <div class="clock-buttons">
+        <button id="btn-clock-period" class="btn btn-clock btn-start">START OF PERIOD</button>
+        <button id="btn-clock-continue" class="btn btn-clock btn-continue">CONTINUE</button>
+        <button id="btn-clock-stop" class="btn btn-clock btn-stop">STOP</button>
+      </div>
+    </div>
+    <div class="score-team" id="score-team-b">
+      <span class="team-score" id="sb-score-b">0</span>
+      <span class="team-name" id="sb-team-b">Team B</span>
+    </div>
+  </div>
+
+  <!-- Video -->
+  <div id="video-section">
+    <div id="video-wrapper">
+      <video id="game-video" class="video-js vjs-default-skin" controls preload="auto"></video>
+    </div>
+  </div>
+
+  <!-- Seekbar -->
+  <div id="seekbar-wrap">
+    <canvas id="seekbar-canvas"></canvas>
+  </div>
+
+  <!-- Video Controls -->
+  <div id="video-controls">
+    <button id="vc-back30" class="btn btn-ctrl">−30s</button>
+    <button id="vc-back5" class="btn btn-ctrl">−5s</button>
+    <button id="vc-play" class="btn btn-ctrl btn-play">▶</button>
+    <button id="vc-fwd5" class="btn btn-ctrl">+5s</button>
+    <button id="vc-fwd30" class="btn btn-ctrl">+30s</button>
+    <button id="vc-mute" class="btn btn-ctrl">🔊</button>
+    <select id="vc-speed" class="speed-select">
+      <option value="0.25">0.25×</option>
+      <option value="0.5">0.5×</option>
+      <option value="0.75">0.75×</option>
+      <option value="1" selected>1×</option>
+      <option value="1.25">1.25×</option>
+      <option value="1.5">1.5×</option>
+      <option value="2">2×</option>
+    </select>
+    <span id="vc-time">0:00 / 0:00</span>
+  </div>
+
+  <!-- Event Panel -->
+  <div id="event-panel">
+    <div class="event-panel-header">
+      <div class="event-panel-tabs">
+        <button class="tab-btn active" data-tab="list">Event List</button>
+        <button class="tab-btn" data-tab="bgdl">BGDL Text</button>
+      </div>
+      <div class="event-panel-actions">
+        <button id="btn-add-event" class="btn btn-primary btn-sm">+ Add Event</button>
+        <button id="btn-ge-setup" class="btn btn-secondary btn-sm">Setup</button>
+        <button id="btn-ge-export" class="btn btn-secondary btn-sm">Export</button>
+        <button id="btn-ge-save" class="btn btn-secondary btn-sm">Save</button>
+      </div>
+    </div>
+    <div id="tab-list" class="tab-pane active">
+      <table id="events-table">
+        <thead>
+          <tr>
+            <th>Wall Clock</th>
+            <th>Game Clock</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="events-tbody"></tbody>
+      </table>
+    </div>
+    <div id="tab-bgdl" class="tab-pane" hidden>
+      <textarea id="bgdl-text-editor" spellcheck="false"></textarea>
+      <div class="bgdl-editor-actions">
+        <span id="bgdl-parse-status"></span>
+        <button id="btn-bgdl-apply" class="btn btn-primary btn-sm">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Event Entry Modal ────────────────────────────────────────────────────── -->
+<div id="entry-modal" class="modal" hidden>
+  <div class="modal-backdrop"></div>
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2 id="modal-title">Add Event</h2>
+      <div class="modal-mode-toggle">
+        <button class="mode-btn active" data-mode="gui">GUI</button>
+        <button class="mode-btn" data-mode="bgdl">BGDL</button>
+      </div>
+      <button id="modal-close" class="btn-icon">✕</button>
+    </div>
+    <div id="modal-gui" class="modal-body">
+      <!-- Step 1: Type -->
+      <div id="entry-step1">
+        <h3>Event Type</h3>
+        <div class="type-grid" id="type-grid"></div>
+      </div>
+      <!-- Step 2: Fields -->
+      <div id="entry-step2" hidden>
+        <button class="btn btn-sm btn-secondary" id="entry-back">← Back</button>
+        <h3 id="entry-type-label"></h3>
+        <div id="entry-fields"></div>
+      </div>
+    </div>
+    <div id="modal-bgdl" class="modal-body" hidden>
+      <div class="bgdl-entry-wrap">
+        <div class="bgdl-entry-prefix" id="bgdl-entry-prefix"></div>
+        <input id="bgdl-entry-input" type="text" class="bgdl-entry-input" placeholder="e.g. P1T8:15 2pt+A15+8SFB19 @rim">
+      </div>
+      <div id="bgdl-entry-preview" class="bgdl-entry-preview"></div>
+    </div>
+    <div class="modal-footer">
+      <!-- Step 2 / BGDL mode: time row -->
+      <div class="time-row" id="entry-time-row">
+        <label>Wall clock <input id="entry-wallclock" type="text" placeholder="mm:ss"></label>
+        <label>Game clock <input id="entry-gameclock" type="text" placeholder="P1T10:00 (optional)"></label>
+      </div>
+      <div class="modal-buttons">
+        <button id="entry-cancel" class="btn btn-secondary">Cancel</button>
+        <button id="entry-confirm" class="btn btn-primary" disabled>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Warning Toast ─────────────────────────────────────────────────────── -->
+<div id="warning-toast" class="warning-toast" hidden></div>
+
+<!-- ── Undo Toast ────────────────────────────────────────────────────────── -->
+<div id="undo-toast" class="undo-toast" hidden>
+  <span>Event deleted.</span>
+  <button id="undo-btn" class="btn btn-sm">Undo</button>
+</div>
+
+<!-- ── Lineup Picker Modal ───────────────────────────────────────────────── -->
+<div id="lineup-modal" class="modal" hidden>
+  <div class="modal-backdrop"></div>
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2 id="lineup-modal-title">Select Starting Lineup</h2>
+    </div>
+    <div class="modal-body">
+      <div id="lineup-count" class="lineup-count">0 of 5 selected</div>
+      <div id="lineup-list" class="lineup-list"></div>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-buttons">
+        <button id="lineup-skip" class="btn btn-secondary">Skip</button>
+        <button id="lineup-confirm" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script src="https://unpkg.com/@videojs/themes@1/dist/city/index.css"></script>
+<script>
+// YouTube tech plugin (loaded conditionally)
+const _vjs_yt = document.createElement('script');
+_vjs_yt.src = 'https://unpkg.com/videojs-youtube/dist/Youtube.min.js';
+document.head.appendChild(_vjs_yt);
+</script>
+<script src="{{ url_for('static', filename='js/bgdl.js') }}?v=1"></script>
+<script src="{{ url_for('static', filename='js/api.js') }}?v=1"></script>
+<script src="{{ url_for('static', filename='js/state.js') }}?v=1"></script>
+<script src="{{ url_for('static', filename='js/score.js') }}?v=2"></script>
+<script src="{{ url_for('static', filename='js/gamelist.js') }}?v=1"></script>
+<script src="{{ url_for('static', filename='js/setup.js') }}?v=7"></script>
+<script src="{{ url_for('static', filename='js/evententry.js') }}?v=1"></script>
+<script src="{{ url_for('static', filename='js/gameevents.js') }}?v=13"></script>
+</body>
+</html>

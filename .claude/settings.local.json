@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install flask flask-sqlalchemy -q)",
+      "Bash(python -c \":*)"
+    ]
+  }
+}

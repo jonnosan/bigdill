@@ -40,6 +40,7 @@ Whitespace on either side of the colon is allowed but not required
 |Tag|Samples|Description|
 |-|-|-|
 |GAME|GAME: Waratah 1 Youth Men Grand Final 2025|Free form text that can be used by a human to distinguish this game from any others|
+|GAME_ID|YLM1::776812|Free form ID field that can be used to uniquely identify this game during machine processing of BGDL data|
 |PERIODS|PERIODS: 4x10+5<br>PERIODS:2 X 20|The number and duration of periods during a standard game (seperated by an 'x' or 'X'), optionally followed by a plus sign and then the duration of any overtime periods, whether or not overtime was required in this game|  
 |DATE|DATE:2025-08-24<br>DATE: 2025-08-24T11:00:00<br>DATE:2025-08-24T11:00:00+10:0 |Game date (possibily with time) in any valid ISO 8601 format|
 |VIDEO|VIDEO : https://www.youtube.com/watch?v=odm3WiK5wC4 |URL of a video of the game|
@@ -122,7 +123,7 @@ Game Data for such events are either a single team (identified by letter 'A' for
 These events are used to record a shot attempt, whether succesful or not. 
 Event Data for such events always include:
 - The shot type (per the table below)
-- A "+" if theshot was succesful and a "-" if the show was unsuccesful. 
+- A "+" if the shot was succesful and a "-" if the show was unsuccesful. 
 - the individual player who attempted the shot, identified by a letter (A or B) followed by digits representing the jersey number of the player e.g "A 1" or "b27". e.g. "23:14 2p-A15" is an unsuccesful 2 pt attempt by the player from Team A wearing jersey 15 
 - If the shot was assisted, then there shall be another "+" followed by the jersey number of the player who made the assist (as this is always a team member of the shooter, the team (A or B) is not seperately specified)
 - If the shooter was fouled while shooting,  this is indicated by 'SF' (for an ordinary shooting foul), 'UF' for an Unsportsmanlike Foul, and 'DQ' for a Disqualifying foul,  followed by the team and jersey number of the player that was charged with the foul (i.e. the opponent of the shooter). 

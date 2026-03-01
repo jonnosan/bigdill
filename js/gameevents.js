@@ -1,6 +1,6 @@
-// ── Game Data Screen Logic ────────────────────────────────────────────────────
+// ── Game Events Screen Logic ──────────────────────────────────────────────────
 
-const GameData = (() => {
+const GameEvents = (() => {
   'use strict';
 
   const WINDOW_HALF = 7;   // rows before/after current
@@ -11,11 +11,18 @@ const GameData = (() => {
   let mode = 'playback';  // 'playback' | 'record'
   let currentIdx = -1;    // index in AppState.events of "current" row (-1 = virtual)
   let editingRow = null;  // { wallClock, gameClock, eventType, eventData, isNew }
+  let dirty = false;      // unsaved changes since last save / screen load
+
+  function handleBeforeUnload(e) {
+    if (dirty) { e.preventDefault(); e.returnValue = ''; }
+  }
 
   const $ = id => document.getElementById(id);
 
   // ── Initialise ──────────────────────────────────────────────────────────────
   function init() {
+    dirty = false;
+    window.addEventListener('beforeunload', handleBeforeUnload);
     populateInfoBar();
     buildEmptyTable();
     initVideo();
@@ -29,6 +36,7 @@ const GameData = (() => {
     if (player) { player.pause(); }
     stopClockTimer();
     document.removeEventListener('keydown', handleKey);
+    window.removeEventListener('beforeunload', handleBeforeUnload);
   }
 
   // ── Info bar ────────────────────────────────────────────────────────────────
@@ -44,6 +52,9 @@ const GameData = (() => {
     b.style.borderColor = h.teamB.color || '#555';
     if (h.teamA.color) a.style.color = h.teamA.color;
     if (h.teamB.color) b.style.color = h.teamB.color;
+
+    $('score-team-a').textContent = h.teamA.name || 'Team A';
+    $('score-team-b').textContent = h.teamB.name || 'Team B';
   }
 
   // ── Video init ──────────────────────────────────────────────────────────────
@@ -105,9 +116,34 @@ const GameData = (() => {
     };
   }
 
+  // ── Record validation ────────────────────────────────────────────────────────
+  // Returns true if it is safe to leave the current editing row (no content, or content
+  // that parses OK). Returns false if the user has typed something that is invalid and
+  // chose to stay and keep editing.
+  function canLeaveCurrentRecord() {
+    if (!editingRow) return true;
+    const evInput = document.getElementById('edit-eventdata');
+    const evVal = evInput ? evInput.value.trim() : '';
+    if (!evVal) return true; // nothing typed — safe to discard silently
+
+    const ttInput = document.getElementById('edit-timetag');
+    const ttVal = ttInput ? ttInput.value.trim() : (editingRow.wallClock || '');
+    if (BGDL.parseDetailLine(ttVal + ' ' + evVal)) return true; // valid — safe to leave
+
+    return confirm('This record is not valid and cannot be saved.\nDiscard it and continue?');
+  }
+
   // ── Video controls ──────────────────────────────────────────────────────────
   function bindControls() {
     $('btn-gd-save').addEventListener('click', saveFile);
+
+    $('mode-indicator').addEventListener('click', () => {
+      if (mode === 'record') {
+        if (canLeaveCurrentRecord()) setMode('playback');
+      } else {
+        setMode('record');
+      }
+    });
 
     // Click an event row in playback mode → seek to that wall clock
     $('events-tbody').addEventListener('click', (e) => {
@@ -218,22 +254,27 @@ const GameData = (() => {
   function updateGameClock() {
     if (!player) return;
     const wallSecs = player.currentTime() || 0;
+
     const gc = BGDL.computeGameClock(window.AppState.events, wallSecs, window.AppState.header);
     const { period, secsRemaining } = gc;
     const mm = Math.floor(secsRemaining / 60);
     const ss = Math.floor(secsRemaining % 60);
     $('game-clock-display').textContent =
       `P${period} · ${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+
+    const { scoreA, scoreB } = BGDL.computeScore(window.AppState.events, wallSecs);
+    $('score-value').textContent = `${scoreA} : ${scoreB}`;
   }
 
   // ── Mode ────────────────────────────────────────────────────────────────────
   function setMode(m) {
+    const prevMode = mode;
     mode = m;
     const ind = $('mode-indicator');
     if (m === 'playback') {
       ind.textContent = 'Playback';
       ind.className = 'playback';
-      leaveRecordMode();
+      leaveRecordMode(prevMode === 'record');
     } else {
       ind.textContent = 'Record Entry';
       ind.className = 'record';
@@ -271,10 +312,10 @@ const GameData = (() => {
     focusCurrentRow();
   }
 
-  function leaveRecordMode() {
+  function leaveRecordMode(resumePlay) {
     editingRow = null;
     renderTable();
-    if (player) player.play();
+    if (resumePlay && player) player.play();
   }
 
   function findExistingRecord(wallSecs) {
@@ -309,20 +350,7 @@ const GameData = (() => {
       else break;
     }
 
-    // Build the window: WINDOW_HALF before, 1 current, WINDOW_HALF after
-    const slots = [];
-    for (let offset = -WINDOW_HALF; offset <= WINDOW_HALF; offset++) {
-      const idx = pivotIdx + offset + (offset < 0 ? 0 : 1);
-      // offset == 0 → "current" position (may be virtual)
-      if (offset === 0) {
-        slots.push({ type: 'current', idx: pivotIdx });
-      } else {
-        const evIdx = offset < 0 ? pivotIdx + offset + 1 : pivotIdx + offset + 1;
-        slots.push({ type: offset < 0 ? 'past' : 'future', evIdx });
-      }
-    }
-
-    // Simpler slot building
+    // Build slot list: WINDOW_HALF rows before current, current row, WINDOW_HALF rows after
     const slotList = [];
     for (let i = 0; i < TOTAL_ROWS; i++) {
       const offset = i - WINDOW_HALF; // -7 to +7
@@ -394,7 +422,7 @@ const GameData = (() => {
         ttInput.addEventListener('keydown', (e) => {
           if (e.key === 'Tab')       { e.preventDefault(); if (evInput) evInput.focus(); }
           if (e.key === 'Enter')     commitRecord();
-          if (e.key === 'Escape')    setMode('playback');
+          if (e.key === 'Escape')    { if (canLeaveCurrentRecord()) setMode('playback'); }
           if (e.key === 'ArrowUp')   { e.preventDefault(); navigateRecord(-1); }
           if (e.key === 'ArrowDown') { e.preventDefault(); navigateRecord(1); }
         });
@@ -403,7 +431,7 @@ const GameData = (() => {
         evInput.addEventListener('keydown', (e) => {
           if (e.key === 'Tab')       { e.preventDefault(); if (ttInput) ttInput.focus(); }
           if (e.key === 'Enter')     commitRecord();
-          if (e.key === 'Escape')    setMode('playback');
+          if (e.key === 'Escape')    { if (canLeaveCurrentRecord()) setMode('playback'); }
           if (e.key === 'ArrowUp')   { e.preventDefault(); navigateRecord(-1); }
           if (e.key === 'ArrowDown') { e.preventDefault(); navigateRecord(1); }
         });
@@ -412,6 +440,7 @@ const GameData = (() => {
   }
 
   function navigateRecord(delta) {
+    if (!canLeaveCurrentRecord()) return;
     const events = window.AppState.events;
     if (!events.length) return;
 
@@ -467,7 +496,12 @@ const GameData = (() => {
 
     // Parse time tag field
     const parsedLine = BGDL.parseDetailLine(ttVal + ' ' + evVal);
-    if (!parsedLine) { setMode('playback'); return; }
+    if (!parsedLine) {
+      if (confirm('This record is not valid and cannot be saved.\nDiscard it and continue?')) {
+        setMode('playback');
+      }
+      return;
+    }
 
     const rec = {
       wallClock: parsedLine.wallClock,
@@ -492,6 +526,7 @@ const GameData = (() => {
       events.splice(insertAt, 0, rec);
     }
 
+    dirty = true;
     updateEventCount();
     setMode('playback');
   }
@@ -544,6 +579,7 @@ const GameData = (() => {
         const writable = await handle.createWritable();
         await writable.write(text);
         await writable.close();
+        dirty = false;
       } catch (e) {
         if (e.name !== 'AbortError') console.error(e);
       }
@@ -554,6 +590,7 @@ const GameData = (() => {
       a.download = suggested;
       a.click();
       URL.revokeObjectURL(a.href);
+      dirty = false;
     }
   }
 
@@ -567,6 +604,6 @@ const GameData = (() => {
   }
 
   // ── Public ───────────────────────────────────────────────────────────────────
-  return { init, destroy };
+  return { init, destroy, isDirty: () => dirty };
 
 })();

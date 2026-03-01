@@ -348,6 +348,46 @@ const BGDL = (() => {
     return { period, secsRemaining };
   }
 
+  // ── Compute game score from events ─────────────────────────────────────────
+  // Returns { scoreA, scoreB } at a given wall clock position.
+  // 'score' events set both scores absolutely; shot events increment by points.
+  function computeScore(events, wallClockSecs) {
+    let scoreA = 0;
+    let scoreB = 0;
+
+    for (const ev of events) {
+      const evWall = parseWallClock(ev.wallClock);
+      if (evWall > wallClockSecs) break;
+
+      const et = ev.eventType.toLowerCase();
+
+      // Score override: eventData like "18 - 10" or "18-10"
+      if (et === 'score') {
+        const m = ev.eventData.replace(/\s/g, '').match(/^(\d+)-(\d+)$/);
+        if (m) { scoreA = parseInt(m[1]); scoreB = parseInt(m[2]); }
+        continue;
+      }
+
+      // Successful shot attempts
+      const shotPoints = { ft: 1, '2pt': 2, pb: 2, dunk: 2, '3pt': 3 };
+      const pts = shotPoints[et];
+      if (pts === undefined) continue;
+
+      // Success indicator: eventData must start with '+'
+      const data = ev.eventData.trim();
+      if (!data.startsWith('+')) continue;
+
+      // Team: first non-space char after the '+' is A or B
+      const teamM = data.slice(1).trimStart().match(/^([AB])/i);
+      if (!teamM) continue;
+
+      if (teamM[1].toUpperCase() === 'A') scoreA += pts;
+      else scoreB += pts;
+    }
+
+    return { scoreA, scoreB };
+  }
+
   // ── Public API ──────────────────────────────────────────────────────────────
   return {
     parse,
@@ -360,6 +400,7 @@ const BGDL = (() => {
     generateHeader,
     describe,
     computeGameClock,
+    computeScore,
     REGIONS
   };
 })();

@@ -8,7 +8,7 @@
   <!-- Video.js -->
   <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/style.css?v=11" />
+  <link rel="stylesheet" href="css/style.css?v=15" />
 </head>
 <body>
 
@@ -112,9 +112,9 @@
 
 
 <!-- ══════════════════════════════════════════════════════════════
-     GAME DATA SCREEN
+     GAME EVENTS SCREEN
 ═════════════════════════════════════════════════════════════════ -->
-<div id="gamedata-screen" class="screen">
+<div id="gameevents-screen" class="screen">
 
   <!-- Game info bar -->
   <div id="game-info-bar">
@@ -127,9 +127,14 @@
     <button class="back-btn" id="btn-back">← Setup</button>
   </div>
 
-  <!-- Game clock bar -->
-  <div id="game-clock-bar">
-    <span class="clock-label">Game Clock</span>
+  <!-- Scoreboard bar -->
+  <div id="scoreboard-bar">
+    <div id="score-display">
+      <span id="score-team-a">—</span>
+      <span id="score-value">0 : 0</span>
+      <span id="score-team-b">—</span>
+    </div>
+    <div class="bar-sep"></div>
     <div id="game-clock-display">P1 · 10:00</div>
     <span id="mode-indicator" class="playback">Playback</span>
   </div>
@@ -200,7 +205,7 @@
     </div>
   </div>
 
-</div><!-- #gamedata-screen -->
+</div><!-- #gameevents-screen -->
 
 
 <!-- ── Scripts ──────────────────────────────────────────────────────────────── -->
@@ -209,8 +214,8 @@
 <!-- Video.js YouTube tech -->
 <script src="https://cdn.jsdelivr.net/npm/videojs-youtube@3.0.1/dist/Youtube.min.js"></script>
 
-<script src="js/bgdl.js?v=11"></script>
-<script src="js/setup.js?v=11"></script>
-<script src="js/gamedata.js?v=11"></script>
+<script src="js/bgdl.js?v=14"></script>
+<script src="js/setup.js?v=14"></script>
+<script src="js/gameevents.js?v=17"></script>
 </body>
 </html>

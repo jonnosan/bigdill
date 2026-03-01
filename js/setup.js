@@ -3,7 +3,7 @@
 (function () {
   'use strict';
 
-  // Shared game state object (read by gamedata.js too)
+  // Shared game state object (read by gameevents.js too)
   window.AppState = {
     header: {
       game: '', date: '', video: '',
@@ -188,19 +188,22 @@
     e.target.value = '';
   });
 
-  // ── Details → switch to Game Data screen ───────────────────────────────────
+  // ── Details → switch to Game Events screen ──────────────────────────────────
   $('btn-details').addEventListener('click', () => {
     readForm();
-    switchScreen('gamedata-screen');
-    // Let gamedata.js know it should initialise
-    if (typeof GameData !== 'undefined') GameData.init();
+    switchScreen('gameevents-screen');
+    // Let gameevents.js know it should initialise
+    if (typeof GameEvents !== 'undefined') GameEvents.init();
   });
 
-  // ── Back from Game Data ─────────────────────────────────────────────────────
+  // ── Back from Game Events ────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
     $('btn-back').addEventListener('click', () => {
+      if (typeof GameEvents !== 'undefined' && GameEvents.isDirty()) {
+        if (!confirm('You have unsaved changes. Leave without saving?')) return;
+      }
       switchScreen('setup-screen');
-      if (typeof GameData !== 'undefined') GameData.destroy();
+      if (typeof GameEvents !== 'undefined') GameEvents.destroy();
     });
   });
 

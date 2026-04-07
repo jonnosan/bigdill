@@ -81,18 +81,20 @@ A Game Event Detail Records consists of:
 3. Event Data
 
 ### Time Tags
-A Time Tag consists of a Wall Clock value, and (optionally) whitespace followed by a Game Clock value
+A Time Tag consists of a Wall Clock value (or a `-` placeholder), and (optionally) whitespace followed by a Game Clock value
 
 
 #### Wall Clock
 
-Wall clock may be recorded in absolute terms (for example as a full ISO-8601 datetime), or relative to some base time (for example, the start of a video - where an event with time tag '3:51' occurs at 3 minutes and 51 seconds into that video). 
+Wall clock may be recorded in absolute terms (for example as a full ISO-8601 datetime), or relative to some base time (for example, the start of a video - where an event with time tag '3:51' occurs at 3 minutes and 51 seconds into that video).
 
 At minimum, a time tag consists of one or 2 digits of minutes, followed by a colon, followed by seconds, e.g. '0:01', '00:35', '31:54'
 
 Optionally, a time tag can contain one or 2 digits of hours, and/or fractions of seconds. e.g. '01:32:35','01:32:35.276', '19:41.2'
 
 The wall clock MAY be *preceded* by whitespace, but there MUST NOT be whitespace *within* the wall clock value. e.g. '  03:12' is valid, but '03 : 12' is not.
+
+Where the wall clock time is not known, a single `-` character shall be used as a placeholder. When `-` is used, a Game Clock value SHOULD be provided so that the event can still be placed in game time. e.g. `- P2T07:31 2pt+A12`
 
 #### Game Clock
 After any Wall Clock tag, seperated with whitespace, a Game Clock may be specified.

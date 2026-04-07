@@ -41,11 +41,36 @@ Whitespace on either side of the colon is allowed but not required
 |-|-|-|
 |GAME|GAME: Waratah 1 Youth Men Grand Final 2025|Free form text that can be used by a human to distinguish this game from any others|
 |GAME_ID|YLM1::776812|Free form ID field that can be used to uniquely identify this game during machine processing of BGDL data|
-|PERIODS|PERIODS: 4x10+5<br>PERIODS:2 X 20|The number and duration of periods during a standard game (seperated by an 'x' or 'X'), optionally followed by a plus sign and then the duration of any overtime periods, whether or not overtime was required in this game|  
+|PERIODS|PERIODS: 4x10+5<br>PERIODS:2 X 20|The number and duration of periods during a standard game (seperated by an 'x' or 'X'), optionally followed by a plus sign and then the duration of any overtime periods, whether or not overtime was required in this game|
 |DATE|DATE:2025-08-24<br>DATE: 2025-08-24T11:00:00<br>DATE:2025-08-24T11:00:00+10:0 |Game date (possibily with time) in any valid ISO 8601 format|
 |VIDEO|VIDEO : https://www.youtube.com/watch?v=odm3WiK5wC4 |URL of a video of the game|
-|A| A: Bankstown Bruins<br>A:BAN,Blue|Name (or team code) of 'Team A' (sometimes called the Home team). Optionally, the team name/code may be followed by a comma and then the predominant colour of the jersey worn by this team in this game|
-|B| B: Hills Hornets<br>B:HIL, Green|Name (or team code) of 'Team B' (sometimes called the Away team). Optionally, the team name/code may be followed by a comma and then the predominant colour of the jersey worn by this team in this game|
+|A| A: Bankstown Bruins<br>A:BAN,Blue<br>A: BAN/Bankstown Bruins|Name (or team code) of 'Team A' (sometimes called the Home team). Optionally, the team name/code may be followed by a comma and then the predominant colour of the jersey worn by this team in this game. Alternatively, a short team code may be specified before a '/' separator followed by the full team name (see Team Codes below)|
+|B| B: Hills Hornets<br>B:HIL, Green<br>B: HIL/Hills Hornets|Name (or team code) of 'Team B' (sometimes called the Away team). Optionally, the team name/code may be followed by a comma and then the predominant colour of the jersey worn by this team in this game. Alternatively, a short team code may be specified before a '/' separator followed by the full team name (see Team Codes below)|
+|VENUE|VENUE: Sydney Olympic Park|The name of the venue where the game was played|
+|GAME_WEBPAGE|GAME_WEBPAGE: https://nbl1.com.au/game?id=abc123|URL of the official game page on the competition website|
+
+### Team Codes
+When specifying team names in the A and B header tags, an explicit short team code can be provided using the `CODE/Full Name` convention. The text before the `/` is used as the team code (typically 2-4 uppercase characters), and the text after the `/` is the full team name. For example:
+
+```
+A: BMG/BMGS 1sts
+B: AND/St Andrews Cathedral School
+```
+
+This is useful when the full team name does not lend itself to automatic code derivation (e.g. multiple teams starting with "St").
+
+If no `/` is present, the team code is derived automatically from the team name (implementation-defined).
+
+### Roster Comments
+Player rosters may be included in the header area as comments. These are not required but allow processors to resolve jersey numbers to player names when generating human-readable output. The convention is:
+
+```
+# Team A roster (Bankstown Bruins):
+#   #7 John Smith
+#   #12 Jane Doe
+```
+
+Each roster entry is a comment line containing `#` followed by the jersey number and player name. Processors may use these to look up player names from jersey numbers appearing in game events.
 
 
 ## Game Event Detail Records

@@ -19,7 +19,7 @@ BGDL is also intended to facilitate interoperability between different systems t
 
 ## Inspirations
 
-<https://www.willhart.io/post/basketball-analysis-software/#building-a-tagging-language>
+<https://www.willhart.io/post/basketball-analysis-software/#building-a-tagging-software>
 <https://en.wikipedia.org/wiki/Algebraic_notation_(chess)>
 
 # BGDL format
@@ -62,26 +62,26 @@ B: IWB/Inner West Bulls
 
 This is useful when the full team name does not lend itself to automatic code derivation (e.g. multiple teams starting with "St").
 
+If no `/` is present, the team code is derived automatically from the team name (implementation-defined).
+
 ### Rosters
 
-Player rosters may be included in the header. Where any roster records are provided for a team, a complete roster for that team SHOULD be provided, however
-processors should not rely on that. It is acceptable to provide a roster for one team only.
+Player rosters may be included in the header. Where any roster records are provided for a team, a complete roster for that team SHOULD be provided, however processors should not rely on that. It is acceptable to provide a roster for one team only.
 
-A roster record consists of, at minimum,the letter 'R' for roster, a team code, and a jersey number. Optionally, this may be followed by whitespace, and then a player name.
-A player name may be followed by optional whitespace and a comma, followed by a free form player ID, if one exists, that could be used to (for example), track a single player across multiple games.
-Where a player ID is known, and the player name is not, '-' can be used in the player name part of the record.
+A roster record consists of the letter `R`, immediately followed by the team letter (`A` or `B`), immediately followed by the jersey number — with no spaces between these three elements. This may optionally be followed by whitespace and then a player name. A player name may in turn be followed by optional whitespace, a comma, and a free-form player ID that could be used to track a player across multiple games. Where a player ID is known but the player name is not, `-` should be used as a placeholder for the name.
 
 ```
-Example Roster Records
 # Team A roster (Bankstown Bruins):
 RA8 John Smith, XX-91267
-RA00 -,XX-91929
-RA1 Lee Yuan,XX-9159
+RA00 -, XX-91929
+RA1 Lee Yuan, XX-9159
 
-
+# Team B roster (Inner West Bulls):
+RB7 Maria Jones, XX-84312
+RB14 Sam Park
 ```
 
-Each roster entry is a comment line containing `#` followed by the jersey number and player name. Processors may use these to look up player names from jersey numbers appearing in game events.
+Any other information about players or teams that does not fit the structured roster format above may be included as free-form comments in the header using the standard `#` comment syntax.
 
 ## Game Event Detail Records
 
@@ -103,7 +103,7 @@ At minimum, a time tag consists of one or 2 digits of minutes, followed by a col
 
 Optionally, a time tag can contain one or 2 digits of hours, and/or fractions of seconds, e.g. `01:32:35`, `01:32:35.276`, `19:41.2`.
 
-The wall clock MAY be *preceded* by whitespace, but there MUST NOT be whitespace *within* the wall clock value. e.g. ` 03:12` is valid, but `03 : 12` is not.
+The wall clock MAY be *preceded* by whitespace, but there MUST NOT be whitespace *within* the wall clock value. e.g. `03:12` is valid, but `03 : 12` is not.
 
 Where the wall clock time is not known, a single `-` character shall be used as a placeholder. When `-` is used, a Game Clock value SHOULD be provided so that the event can still be placed in game time. e.g. `- P2T07:31 2pt+A12`
 
@@ -214,22 +214,28 @@ Named regions are defined on the following half-court diagram, where the attacki
 
 ![Basketball half court regions](img/basketball_half_court_regions.svg)
 
-| Abbreviation | Region | 2 or 3 pt zone? |
-| --- | --- | --- |
-| LC | Left Corner — near baseline, attacker's left | 3pt zone |
-| LW | Left Wing — outside arc, attacker's left | 3pt zone |
-| TC | Top Centre — outside arc, top of key and beyond (including logo shots and full court attempts) | 3pt zone |
-| RW | Right Wing — outside arc, attacker's right | 3pt zone |
-| RC | Right Corner — near baseline, attacker's right | 3pt zone |
-| LM | Left Mid — inside arc, attacker's left, between corner and key level | 2pt zone |
-| LE | Left Elbow — inside arc, attacker's left, at key-top level | 2pt zone |
-| TM | Top Mid — inside arc, directly in front of basket outside key | 2pt zone |
-| RE | Right Elbow — inside arc, attacker's right, at key-top level | 2pt zone |
-| RM | Right Mid — inside arc, attacker's right, between corner and key level | 2pt zone |
-| LP | Left Paint — inside key, attacker's left third | 2pt zone |
-| TP | Top Paint — inside key, top third closest to free throw line | 2pt zone |
-| RP | Right Paint — inside key, attacker's right third | 2pt zone |
-| RIM | Rim — inside key, nearest to basket, between LP and RP | 2pt zone |
+The table below defines each region, its 2pt/3pt classification, and the approximate centroid `@(x,y)` coordinate for each region under both attacking orientations. These centroids are the midpoints of each zone and can be used by processors to assign a representative coordinate when only a named region is known.
+
+The two coordinate columns assume:
+* **Attacking left** — the attacking basket is on the left side of the primary camera's view (x≈0). This is the orientation shown in the diagram above.
+* **Attacking right** — the attacking basket is on the right side of the primary camera's view (x≈100).
+
+| Abbreviation | Region | 2 or 3 pt zone? | Centroid (attacking left) | Centroid (attacking right) |
+| --- | --- | --- | --- | --- |
+| LC | Left Corner — near baseline, attacker's left | 3pt zone | (8, 3) | (92, 97) |
+| LW | Left Wing — outside arc, attacker's left | 3pt zone | (20, 13) | (80, 87) |
+| TC | Top Centre — outside arc, top of key and beyond (including logo shots and full court attempts) | 3pt zone | (30, 50) | (70, 50) |
+| RW | Right Wing — outside arc, attacker's right | 3pt zone | (20, 87) | (80, 13) |
+| RC | Right Corner — near baseline, attacker's right | 3pt zone | (8, 97) | (92, 3) |
+| LM | Left Mid — inside arc, attacker's left, between corner and key level | 2pt zone | (23, 20) | (77, 80) |
+| LE | Left Elbow — inside arc, attacker's left, at key-top level | 2pt zone | (25, 23) | (75, 77) |
+| TM | Top Mid — inside arc, directly in front of basket outside key | 2pt zone | (25, 50) | (75, 50) |
+| RE | Right Elbow — inside arc, attacker's right, at key-top level | 2pt zone | (25, 77) | (75, 23) |
+| RM | Right Mid — inside arc, attacker's right, between corner and key level | 2pt zone | (23, 80) | (77, 20) |
+| LP | Left Paint — inside key, attacker's left third | 2pt zone | (10, 38) | (90, 62) |
+| TP | Top Paint — inside key, top third closest to free throw line | 2pt zone | (15, 50) | (85, 50) |
+| RP | Right Paint — inside key, attacker's right third | 2pt zone | (10, 62) | (90, 38) |
+| RIM | Rim — inside key, nearest to basket, between LP and RP | 2pt zone | (4, 50) | (96, 50) |
 
 #### Fouls
 

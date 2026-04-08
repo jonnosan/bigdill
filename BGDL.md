@@ -77,7 +77,7 @@ RA00 -, XX-91929
 RA1 Lee Yuan, XX-9159
 
 # Team B roster (Inner West Bulls):
-RB7 Maria Jones, XX-84312
+RB7 Mark Jones, XX-84312
 RB14 Sam Park
 ```
 

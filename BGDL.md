@@ -1,4 +1,4 @@
-# BGDL (BigDill)  - a language for describing basketball games
+ƒ# BGDL (BigDill)  - a language for describing basketball games
 
 ## Purpose
 BGDL is intended to allow a skilled user to quickly record events in a basketball game (in realtime, or while watching a video of the game), in a format that will allow later processing to:
@@ -184,8 +184,7 @@ As described above, the following additional event types may be recorded as part
 
 Regions of the court are named according to the following diagram 
 
-![basketball court geography](https://raw.githubusercontent.com/jonnosan/bigdill/refs/heads/main/img/basketball_court_regions.png)
-
+![Basketball half court regions](img/basketball_half_court_regions.svg)
 
 Region are identified by an abbreviation, according to the following table:
 

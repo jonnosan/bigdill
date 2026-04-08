@@ -1,0 +1,126 @@
+<svg width="680" height="600" viewBox="0 0 680 600" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Basketball half court shot regions</title>
+<desc>FIBA half court with all shot regions labelled. Near side (camera) at bottom, far side at top, basket at left.</desc>
+
+<style>
+  .line { fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .div  { fill: none; stroke: rgba(255,255,255,0.85); stroke-width: 1.5; stroke-dasharray: 6,3; stroke-linecap: round; }
+  .lbl  { font-family: Arial, sans-serif; font-size: 13px; font-weight: bold; fill: #fff; text-anchor: middle; dominant-baseline: middle; }
+  .sub  { font-family: Arial, sans-serif; font-size: 10px; fill: rgba(255,255,255,0.75); text-anchor: middle; dominant-baseline: middle; }
+  .ax   { font-family: Arial, sans-serif; font-size: 10px; fill: rgba(255,255,255,0.55); }
+</style>
+
+<!-- Court background -->
+<rect x="80" y="50" width="490" height="480" fill="#9a6e20" rx="2"/>
+
+<!-- 3pt zone fills -->
+<!-- RC: far corner top -->
+<rect x="80" y="50" width="161" height="29" fill="rgba(20,184,166,0.6)"/>
+<!-- RW: far wing -->
+<path d="M241,79 A236,236 0 0 1 344,180 L570,61 L570,50 L241,50 Z" fill="rgba(168,85,247,0.45)"/>
+<!-- TC: top centre -->
+<path d="M344,180 A236,236 0 0 1 371,290 A236,236 0 0 1 343,401 L570,522 L570,61 Z" fill="rgba(251,191,36,0.38)"/>
+<!-- LW: near wing -->
+<path d="M343,401 A236,236 0 0 1 241,501 L241,530 L570,530 L570,522 Z" fill="rgba(249,115,22,0.48)"/>
+<!-- LC: near corner bottom -->
+<rect x="80" y="501" width="161" height="29" fill="rgba(239,68,68,0.6)"/>
+
+<!-- 2pt zone fills -->
+<!-- RM: far side band above key -->
+<path d="M80,79 L241,79 A236,236 0 0 1 358,212 L80,212 Z" fill="rgba(99,102,241,0.45)"/>
+<!-- RE: far side crescent at key top -->
+<path d="M283,106 L283,212 L358,212 A236,236 0 0 0 283,106 Z" fill="rgba(139,92,246,0.58)"/>
+<!-- TM: centre band outside key -->
+<path d="M283,212 L283,369 L357,369 A236,236 0 0 0 358,212 Z" fill="rgba(14,165,233,0.45)"/>
+<!-- LE: near side crescent at key bottom -->
+<path d="M283,369 L357,369 A236,236 0 0 1 283,474 L283,369 Z" fill="rgba(96,165,250,0.58)"/>
+<!-- LM: near side band below key -->
+<path d="M80,501 L241,501 A236,236 0 0 0 357,369 L80,369 Z" fill="rgba(59,130,246,0.45)"/>
+
+<!-- Paint fills -->
+<!-- RP: far third full width -->
+<rect x="80"  y="212" width="203" height="40"  fill="rgba(251,146,60,0.65)"/>
+<!-- LP: near third full width -->
+<rect x="80"  y="329" width="203" height="40"  fill="rgba(251,146,60,0.65)"/>
+<!-- RIM: centre left -->
+<rect x="80"  y="252" width="85"  height="77"  fill="rgba(251,146,60,0.72)"/>
+<!-- TP: centre right -->
+<rect x="165" y="252" width="118" height="77"  fill="rgba(251,146,60,0.45)"/>
+
+<!-- Court lines -->
+<rect x="80" y="50" width="490" height="480" class="line"/>
+<rect x="80" y="212" width="203" height="157" class="line"/>
+<path d="M80,246 L135,246 A44,44 0 0 1 135,334 L80,334" class="line"/>
+<path d="M283,227 A63,63 0 0 1 283,353" class="line"/>
+<path d="M283,227 A63,63 0 0 0 283,353" class="line" stroke-dasharray="5,4" stroke="rgba(255,255,255,0.4)"/>
+<line x1="80"  y1="79"  x2="241" y2="79"  class="line"/>
+<line x1="80"  y1="501" x2="241" y2="501" class="line"/>
+<path d="M241,79 A236,236 0 0 1 371,290 A236,236 0 0 1 241,501" class="line"/>
+<rect x="77" y="272" width="5" height="36" fill="#fff"/>
+<circle cx="135" cy="290" r="9" fill="none" stroke="#fff" stroke-width="2.5"/>
+<!-- Halfway line (dashed — TC continues beyond) -->
+<line x1="570" y1="50" x2="570" y2="530" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="8,5"/>
+
+<!-- Region dividers -->
+<!-- RM/RE vertical inside arc -->
+<line x1="283" y1="106" x2="283" y2="212" class="div"/>
+<!-- LE/LM vertical inside arc -->
+<line x1="283" y1="369" x2="283" y2="474" class="div"/>
+<!-- RW/TC diagonal outside arc -->
+<line x1="344" y1="180" x2="570" y2="61"  class="div"/>
+<!-- LW/TC diagonal outside arc -->
+<line x1="343" y1="401" x2="570" y2="522" class="div"/>
+<!-- Paint horizontals -->
+<line x1="80"  y1="252" x2="283" y2="252" class="div"/>
+<line x1="80"  y1="329" x2="283" y2="329" class="div"/>
+<!-- RIM/TP vertical -->
+<line x1="165" y1="252" x2="165" y2="329" class="div"/>
+
+<!-- Region labels -->
+<text x="160" y="63"  class="lbl">RC</text>
+<text x="160" y="76"  class="sub">3pt</text>
+
+<text x="400" y="84"  class="lbl">RW</text>
+<text x="400" y="97"  class="sub">3pt</text>
+
+<text x="465" y="283" class="lbl">TC</text>
+<text x="465" y="297" class="sub">3pt</text>
+
+<text x="400" y="488" class="lbl">LW</text>
+<text x="400" y="502" class="sub">3pt</text>
+
+<text x="160" y="509" class="lbl">LC</text>
+<text x="160" y="522" class="sub">3pt</text>
+
+<text x="175" y="138" class="lbl">RM</text>
+<text x="175" y="152" class="sub">2pt</text>
+
+<text x="320" y="161" class="lbl">RE</text>
+<text x="320" y="175" class="sub">2pt</text>
+
+<text x="322" y="283" class="lbl">TM</text>
+<text x="322" y="297" class="sub">2pt</text>
+
+<text x="320" y="405" class="lbl">LE</text>
+<text x="320" y="419" class="sub">2pt</text>
+
+<text x="175" y="428" class="lbl">LM</text>
+<text x="175" y="442" class="sub">2pt</text>
+
+<text x="181" y="231" class="lbl">RP</text>
+<text x="181" y="244" class="sub">2pt</text>
+
+<text x="224" y="283" class="lbl">TP</text>
+<text x="224" y="297" class="sub">2pt</text>
+
+<text x="181" y="348" class="lbl">LP</text>
+<text x="181" y="361" class="sub">2pt</text>
+
+<text x="115" y="283" class="lbl">RIM</text>
+<text x="115" y="297" class="sub">2pt</text>
+
+<!-- Axis notes -->
+<text x="80"  y="552" class="ax">near side (y=0) = bottom = camera side · far side (y=100) = top · basket at left (x=0) · TC continues beyond halfway →</text>
+<text x="80"  y="566" class="ax">3pt: RC · RW · TC · LW · LC   2pt: RM · RE · TM · LE · LM   paint: RP · TP · LP · RIM</text>
+
+</svg>

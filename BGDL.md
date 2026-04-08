@@ -60,6 +60,7 @@ Whitespace on either side of the colon is allowed but not required.
 | B | `B: Hills Hornets` `B:HIL, Green` `B: HIL/Hills Hornets` | Name (or team code) of 'Team B' (sometimes called the Away team). Optionally, the team name/code may be followed by a comma and then the predominant colour of the jersey worn by this team in this game. Alternatively, a short team code may be specified before a '/' separator followed by the full team name (see Team Codes below) |
 | VENUE | `VENUE: Sydney Olympic Park` | The name of the venue where the game was played |
 | GAME\_WEBPAGE | `GAME_WEBPAGE: https://nbl1.com.au/game?id=abc123` | URL of the official game page on the competition website |
+| LOCATION\_FORMAT | `LOCATION_FORMAT: HALF_COURT` | Indicates how `@(x,y)` coordinates should be interpreted. `FULL_COURT` means x ranges 0–100 baseline-to-baseline (as described in the Regions and Locations section). `HALF_COURT` means all coordinates are relative to the attacking half only, with x ranging 0–50 (0 = baseline near attacking basket, 50 = half court) and y ranging 0–100 (sideline to sideline). `NONE` means no location data is present. If omitted, processors should infer from the data (presence of x values > 50 implies full court). |
 
 ### Team Codes
 
@@ -136,6 +137,15 @@ These events are used to start/stop the game clock, and synchronize the game clo
 | start | Game Clock is started | n/a | `01:02 P1T10:00 start` |
 | stop | Game Clock is stopped (i.e. ref has blown whistle) | n/a | `01:53 P1T9:21 stop` |
 | sync | Game state is unchanged but is used only to synchronize the game clock and wall clock | n/a | `31:27 p2t05:16 sync` |
+| timeout | A team timeout is called | Team that called the timeout | `41:22 P3T5:15 timeout A` |
+
+#### Jump Balls
+
+A jump ball event records a held ball or forced jump ball situation. The Event Data specifies the player(s) involved. Where a defender forced the held ball, they may be credited.
+
+| Event Type Identifier | Meaning | Event Data | Example Detail Record |
+| --- | --- | --- | --- |
+| jumpball | Jump Ball / Held Ball | Player(s) involved | `12:34 P1T7:26 jumpball A5` |
 
 #### Lineups
 
@@ -264,6 +274,16 @@ Where technical fouls are charged against the coach or bench, this shall be reco
 | tf | Technical Foul |
 | uf | Unsportsmanlike Foul |
 | dq | Disqualifying Foul |
+
+##### Take Charge Modifier
+
+Where a defender draws an offensive foul (takes a charge), the defending player may be credited using the `TC` modifier on the offensive foul event. The `TC` modifier is followed by the team and jersey number of the defender who drew the charge.
+
+```
+23:14 of B9 TC A7
+```
+
+This records an offensive foul on B9, with A7 credited for taking the charge. The take charge is a positive defensive stat for the credited player.
 
 #### Rebounds
 

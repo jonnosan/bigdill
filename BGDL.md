@@ -210,7 +210,7 @@ Both formats may appear on the same event, in which case the absolute coordinate
 23:14 2pt+A14 @LC @(23,14)
 ```
 
-Named regions are defined on the following half-court diagram, where the attacking basket is on the left:
+Named regions are defined on the following court diagram, where the attacking basket is on the left:
 
 ![Basketball half court regions](img/basketball_half_court_regions.svg)
 
@@ -224,7 +224,7 @@ The two coordinate columns assume:
 | --- | --- | --- | --- | --- |
 | LC | Left Corner — near baseline, attacker's left | 3pt zone | (8, 3) | (92, 97) |
 | LW | Left Wing — outside arc, attacker's left | 3pt zone | (20, 13) | (80, 87) |
-| TC | Top Centre — outside arc, top of key and beyond (including logo shots and full court attempts) | 3pt zone | (30, 50) | (70, 50) |
+| TC | Top Centre — outside arc, top of key and beyond, up to half court | 3pt zone | (30, 50) | (70, 50) |
 | RW | Right Wing — outside arc, attacker's right | 3pt zone | (20, 87) | (80, 13) |
 | RC | Right Corner — near baseline, attacker's right | 3pt zone | (8, 97) | (92, 3) |
 | LM | Left Mid — inside arc, attacker's left, between corner and key level | 2pt zone | (23, 20) | (77, 80) |

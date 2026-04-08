@@ -9,6 +9,16 @@ BGDL is intended to allow a skilled user to quickly record events in a basketbal
 
 BGDL is also intended to facilitate interoperability between different systems that create, archive or display 'Play By Play' records of basketball games.
 
+## Sample Files
+
+The [sample/](sample/) directory contains example BGDL files illustrating different data sources and styles:
+
+* [sample_game.bgdl](sample/sample_game.bgdl) — machine-generated from a professional league API, with shot locations, dunks, putbacks, and-1s, and player comments
+* [sample_game_2.bgdl](sample/sample_game_2.bgdl) — hand-tagged from video using a scoring app, with start/stop/sync clock events and video-relative wall clock times
+* [sample_game_3.bgdl](sample/sample_game_3.bgdl) — minimal format with absolute wall clock times, no comments, mixed whitespace in rosters, and optional player IDs
+
+All sample files use obfuscated player and team names.
+
 ## Design Goals
 
 * quick and easy for an expert user to manually enter

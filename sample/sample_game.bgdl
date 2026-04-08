@@ -1,0 +1,400 @@
+GAME: Logan Park v Hayden Clay Pioneers
+GAME_ID: SAMPLE::001
+PERIODS: 4x10+5
+DATE: 2026-03-29
+A: Logan Park
+B: Hayden Clay Pioneers
+
+# Team A roster (Logan Park):
+RA3 Quinn Hale
+RA4 Morgan Okafor
+RA5 Dakota Cruz
+RA6 Skyler Frost
+RA17 Kit Pham
+RA22 Oakley Santos
+RA24 Emery Moreau
+RA45 Parker Voss
+RA50 Harper Muir
+# Team B roster (Hayden Clay Pioneers):
+RB3 Jordan Webb
+RB4 Taylor Ruiz
+RB5 Kai Reeves
+RB7 Avery Ngo
+RB8 Ellis Novak
+RB12 Finley Okada
+RB17 Reese Byrne
+RB21 Blake Tanaka
+RB23 Lennox Kemp
+
+0:00.0 LA 3,6,4,22,24
+0:00.0 LB 21,4,23,5
+- P1T09:44 2pt-A22 @(8,31)  # Oakley Santos
+- P1T09:44 rebound B5  # Kai Reeves, 0-0
+- P1T09:32 df A4 @(89,54)  # Morgan Okafor, 0-0
+- P1T09:32 ft+B21  # Blake Tanaka, 0-1
+1:11.0 P1T09:32 ft+B21  # Blake Tanaka, 0-2
+- P1T09:18 2pt-A24 @(14,48)  # Emery Moreau
+- P1T09:18 rebound B23  # Lennox Kemp, 0-2
+- P1T09:12 to B23 stl A22 @(67,20)  # Lennox Kemp, 0-2
+- P1T09:01 to A4 stl B4 @(29,17)  # Morgan Okafor, 0-2
+- P1T08:56 3pt-B21 @(76,14)  # Blake Tanaka
+- P1T08:56 rebound B5  # Kai Reeves, 0-2
+1:53.0 P1T08:49 3pt+B5+4 @(76,85)  # Kai Reeves, 0-5
+- P1T08:22 2pt-A22 @(23,32)  # Oakley Santos
+- P1T08:22 rebound B17  # Reese Byrne, 0-5
+2:37.0 P1T08:10 2pt+B21+17 @(89,49)  # Blake Tanaka, 0-7
+2:49.0 P1T07:52 3pt+A4 @(30,31)  # Morgan Okafor, 3-7
+3:12.0 P1T07:31 2pt+B4 @(87,51)  # Taylor Ruiz, 3-9
+- P1T07:12 to A24 stl B21 @(3,62)  # Emery Moreau, 3-9
+3:34.0 P1T07:07 2pt+B21 @(93,63)  # Blake Tanaka, 3-11
+4:01.0 P1T06:48 3pt+A4+24 @(7,97)  # Morgan Okafor, 6-11
+- P1T06:34 3pt-B17 @(71,71)  # Reese Byrne
+- P1T06:34 rebound B5  # Kai Reeves, 6-11
+4:19.0 P1T06:31 pb+B5SFA22 @(93,56)  # Kai Reeves, 6-13
+4:37.0 P1T06:31 ft+B5  # Kai Reeves, 6-14
+- P1T06:16 2pt-A3 @(22,53)  # Quinn Hale
+- P1T06:16 rebound B  # Hayden Clay Pioneers, 6-14
+- P1T05:59 2pt-B21 @(78,51)  # Blake Tanaka
+- P1T05:59 rebound A6  # Skyler Frost, 6-14
+- P1T05:50 to A6 stl B21 @(88,51)  # Skyler Frost, 6-14
+5:41.0 P1T05:47 2pt+B4+21 @(91,44)  # Taylor Ruiz, 6-16
+- P1T05:47 # timeout A  # Logan Park
+- P1T05:31 2pt-A3 @(11,55)  # Quinn Hale
+- P1T05:31 rebound B4  # Taylor Ruiz, 6-16
+6:32.0 P1T05:22 3pt+B21+4 @(78,89)  # Blake Tanaka, 6-19
+- P1T04:58 to A3 @(25,25)  # Quinn Hale, 6-19
+- P1T04:55 LA 22,24,3,4,5
+- P1T04:48 2pt-B21 @(86,67)  # Blake Tanaka
+- P1T04:48 rebound B17  # Reese Byrne, 6-19
+- P1T04:43 3pt-B8 @(75,12)  # Ellis Novak
+- P1T04:43 rebound A  # Logan Park, 6-19
+- P1T04:31 2pt-A4 @(8,39)  # Morgan Okafor
+- P1T04:31 rebound B17  # Reese Byrne, 6-19
+- P1T04:24 2pt-B4 @(96,36)  # Taylor Ruiz
+- P1T04:24 rebound B  # Hayden Clay Pioneers, 6-19
+- P1T04:23 df A5 @(93,41)  # Dakota Cruz, 6-19
+8:38.0 P1T04:11 2pt+B17 @(92,41)  # Reese Byrne, 6-21
+- P1T04:00 2pt-A5 @(12,26)  # Dakota Cruz
+- P1T04:00 rebound B17  # Reese Byrne, 6-21
+- P1T03:55 to B17 stl A5 @(23,21)  # Reese Byrne, 6-21
+8:55.0 P1T03:48 3pt+A24+5 @(29,27)  # Emery Moreau, 9-21
+- P1T03:31 df A5 @(96,63)  # Dakota Cruz, 9-21
+- P1T03:31 LA 22,24,3,4,6
+- P1T03:31 ft-B17  # Reese Byrne
+9:55.0 P1T03:31 ft+B17  # Reese Byrne, 9-22
+- P1T03:13 2pt-A24 @(11,38)  # Emery Moreau
+- P1T03:13 rebound B7  # Avery Ngo, 9-22
+- P1T03:08 to B7 stl A24 @(22,24)  # Avery Ngo, 9-22
+- P1T03:07 df B7 @(12,51)  # Avery Ngo, 9-22
+- P1T03:02 2pt-A4 @(11,64)  # Morgan Okafor
+- P1T03:02 rebound B5  # Kai Reeves, 9-22
+11:17.0 P1T02:52 3pt+B7+4 @(77,13)  # Avery Ngo, 9-25
+11:35.0 P1T02:34 2pt+A3+4 @(23,28)  # Quinn Hale, 11-25
+- P1T02:25 2pt-B7 BLA3 @(94,38)  # Avery Ngo
+- P1T02:25 rebound B  # Hayden Clay Pioneers, 11-25
+- P1T02:25 LA 24,3,4,50,6
+12:05.0 P1T02:20 2pt+B8+17 @(89,52)  # Ellis Novak, 11-27
+- P1T01:59 2pt-A3 @(14,47)  # Quinn Hale
+- P1T01:59 rebound B7  # Avery Ngo, 11-27
+- P1T01:48 to B17 stl A50 @(91,47)  # Reese Byrne, 11-27
+- P1T01:43 to A50 @(93,50)  # Harper Muir, 11-27
+- P1T01:43 LA 17,24,3,50,6
+- P1T01:38 3pt-B7 @(75,83)  # Avery Ngo
+- P1T01:38 rebound A  # Logan Park, 11-27
+- P1T01:15 2pt-A24 @(12,11)  # Emery Moreau
+- P1T01:15 rebound B17  # Reese Byrne, 11-27
+- P1T01:00 2pt-B4 @(90,60)  # Taylor Ruiz
+- P1T01:00 rebound A6  # Skyler Frost, 11-27
+- P1T00:58 df B5 @(91,53)  # Kai Reeves, 11-27
+- P1T00:58 LA 17,24,45,50,6
+- P1T00:58 LB 21,4,5,7,8
+- P1T00:47 to A6 @(18,60)  # Skyler Frost, 11-27
+- P1T00:30 to B4 stl A45 @(86,56)  # Taylor Ruiz, 11-27
+- P1T00:26 df B4 @(10,57)  # Taylor Ruiz, 11-27
+- P1T00:26 LB 21,23,5,7,8
+- P1T00:21 2pt-A24 @(14,50)  # Emery Moreau
+- P1T00:21 rebound B5  # Kai Reeves, 11-27
+- P1T00:20 df A45 @(12,49)  # Parker Voss, 11-27
+- P1T00:20 ft-B5  # Kai Reeves
+- P1T00:20 ft-B5  # Kai Reeves
+- P1T00:20 rebound A45  # Parker Voss, 11-27
+- P1T00:08 2pt-A24 @(11,38)  # Emery Moreau
+- P1T00:08 rebound B23  # Lennox Kemp, 11-27
+- P1T00:04 to A17 @(49,66)  # Kit Pham, 11-27
+- P1T00:04 LB 17,21,23,7,8
+- P1T00:01 2pt-B17 @(93,81)  # Reese Byrne
+- P1T00:00 # end period 1
+- P2T09:59 LA 24,3,5,50,6
+- P2T09:59 LB 21,23,5,7,8
+17:41.0 P2T09:40 2pt+B5+23 @(88,50)  # Kai Reeves, 11-29
+- P2T09:21 3pt-A5 @(21,11)  # Dakota Cruz
+- P2T09:21 rebound B23  # Lennox Kemp, 11-29
+- P2T09:10 2pt-B7 @(88,29)  # Avery Ngo
+- P2T09:10 rebound A3  # Quinn Hale, 11-29
+18:15.0 P2T09:01 2pt+A50+5 @(12,55)  # Harper Muir, 13-29
+- P2T08:34 2pt-B8 @(83,54)  # Ellis Novak
+- P2T08:34 rebound B5  # Kai Reeves, 13-29
+19:01.0 P2T08:29 2pt+B8SFA50 @(92,40)  # Ellis Novak, 13-31
+19:13.0 P2T08:29 ft+B8  # Ellis Novak, 13-32
+- P2T08:29 LA 22,24,3,5,6
+19:44.0 P2T08:14 3pt+A24+5 @(22,12)  # Emery Moreau, 16-32
+19:56.0 P2T08:04 3pt+B21+8 @(74,20)  # Blake Tanaka, 16-35
+- P2T07:53 3pt-A24 @(26,80)  # Emery Moreau
+- P2T07:53 rebound B5  # Kai Reeves, 16-35
+20:10.0 P2T07:46 2pt+B7SFA6 @(94,59)  # Avery Ngo, 16-37
+20:53.0 P2T07:46 ft+B7  # Avery Ngo, 16-38
+- P2T07:28 3pt-A22 @(26,84)  # Oakley Santos
+- P2T07:28 rebound A24  # Emery Moreau, 16-38
+21:23.0 P2T07:16 pb+A24+3 @(7,40)  # Emery Moreau, 18-38
+- P2T07:07 df A24 @(70,66)  # Emery Moreau, 18-38
+- P2T07:07 LA 22,24,3,4,5
+- P2T07:07 LB 17,21,23,5,7
+- P2T06:55 3pt-B23 @(70,69)  # Lennox Kemp
+- P2T06:55 rebound A  # Logan Park, 18-38
+- P2T06:45 to A22 stl B7 @(12,78)  # Oakley Santos, 18-38
+22:21.0 P2T06:39 2pt+B21+7 @(94,32)  # Blake Tanaka, 18-40
+- P2T06:39 # timeout A  # Logan Park
+- P2T06:39 LB 17,21,4,5,7
+- P2T06:28 3pt-A4 @(31,68)  # Morgan Okafor
+- P2T06:28 rebound A24  # Emery Moreau, 18-40
+- P2T06:12 2pt-A3 @(27,39)  # Quinn Hale
+- P2T06:12 rebound B5  # Kai Reeves, 18-40
+- P2T06:02 3pt-B21 @(93,3)  # Blake Tanaka
+- P2T06:02 rebound B4  # Taylor Ruiz, 18-40
+23:30.0 P2T05:57 pb+B4 @(88,48)  # Taylor Ruiz, 18-42
+- P2T05:40 3pt-A5 @(30,29)  # Dakota Cruz
+- P2T05:40 rebound B21  # Blake Tanaka, 18-42
+24:05.0 P2T05:27 2pt+B17+7 @(93,30)  # Reese Byrne, 18-44
+- P2T05:18 LA 22,24,3,4,6
+- P2T05:12 to A24 @(30,30)  # Emery Moreau, 18-44
+25:02.0 P2T04:55 3pt+B7+17 @(70,70)  # Avery Ngo, 18-47
+25:14.0 P2T04:43 2pt+A4+24 @(17,24)  # Morgan Okafor, 20-47
+- P2T04:30 3pt-B21 @(94,4)  # Blake Tanaka
+- P2T04:30 rebound A  # Logan Park, 20-47
+- P2T04:30 df B7 @(98,46)  # Avery Ngo, 20-47
+- P2T04:22 df B5 @(9,39)  # Kai Reeves, 20-47
+- P2T04:22 # timeout B  # Hayden Clay Pioneers
+27:41.0 P2T04:22 ft+A22  # Oakley Santos, 21-47
+27:52.0 P2T04:22 ft+A22  # Oakley Santos, 22-47
+- P2T04:22 ast A3  # Quinn Hale, 22-47
+28:15.0 P2T04:10 2pt+B5SFA24 @(90,49)  # Kai Reeves, 22-49
+- P2T04:10 ft-B5  # Kai Reeves
+- P2T04:10 rebound A3  # Quinn Hale, 22-49
+- P2T03:52 3pt-A4 @(23,14)  # Morgan Okafor
+- P2T03:52 rebound A  # Logan Park, 22-49
+- P2T03:46 LB 17,21,23,4,5
+- P2T03:43 2pt-A3 @(12,38)  # Quinn Hale
+- P2T03:43 rebound B23  # Lennox Kemp, 22-49
+29:41.0 P2T03:27 2pt+B4 @(93,41)  # Taylor Ruiz, 22-51
+- P2T03:14 2pt-A24 @(14,52)  # Emery Moreau
+- P2T03:14 rebound B17  # Reese Byrne, 22-51
+30:09.0 P2T02:58 2pt+B5 @(86,43)  # Kai Reeves, 22-53
+30:24.0 P2T02:39 2pt+A3 @(7,59)  # Quinn Hale, 24-53
+30:45.0 P2T02:20 2pt+B17+4SFA4 @(93,60)  # Reese Byrne, 24-55
+31:15.0 P2T02:20 ft+B17  # Reese Byrne, 24-56
+31:38.0 P2T01:57 2pt+A3+24 @(13,53)  # Quinn Hale, 26-56
+31:51.0 P2T01:44 2pt+B4+17 @(92,61)  # Taylor Ruiz, 26-58
+32:07.0 P2T01:31 2pt+A24+6 @(10,57)  # Emery Moreau, 28-58
+- P2T01:20 df A6 @(77,73)  # Skyler Frost, 28-58
+- P2T01:20 LA 22,24,3,5,6
+32:41.0 P2T01:20 ft+B21  # Blake Tanaka, 28-59
+32:55.0 P2T01:20 ft+B21  # Blake Tanaka, 28-60
+- P2T01:20 LB 17,23,4,5,8
+- P2T01:10 2pt-A5 @(9,41)  # Dakota Cruz
+- P2T01:10 rebound B4  # Taylor Ruiz, 28-60
+- P2T00:54 to B23 stl A24 @(67,58)  # Lennox Kemp, 28-60
+- P2T00:45 2pt-A22 @(24,29)  # Oakley Santos
+- P2T00:45 rebound A6  # Skyler Frost, 28-60
+- P2T00:32 2pt-A24 @(10,80)  # Emery Moreau
+- P2T00:32 rebound B17  # Reese Byrne, 28-60
+34:14.0 P2T00:07 pb+B17+8 @(92,39)  # Reese Byrne, 28-62
+- P2T00:00 # end period 2
+- P3T10:00 LA 22,24,3,4,6
+- P3T10:00 LB 17,21,23,4,5
+- P3T09:48 to A3 stl B4 @(20,50)  # Quinn Hale, 28-62
+34:48.0 P3T09:32 2pt+B5+17SFA24 @(95,54)  # Kai Reeves, 28-64
+- P3T09:32 df A4 @(95,54)  # Morgan Okafor, 28-64
+35:11.0 P3T09:32 ft+B5  # Kai Reeves, 28-65
+- P3T09:19 df B4 @(18,82)  # Taylor Ruiz, 28-65
+35:56.0 P3T09:03 2pt+A3 @(10,64)  # Quinn Hale, 30-65
+- P3T08:52 to B17 @(87,19)  # Reese Byrne, 30-65
+- P3T08:45 to A4 stl B17 @(4,56)  # Morgan Okafor, 30-65
+36:23.0 P3T08:32 2pt+B5+17 @(91,51)  # Kai Reeves, 30-67
+36:43.0 P3T08:14 2pt+A3 @(5,39)  # Quinn Hale, 32-67
+- P3T07:57 2pt-B17 @(95,35)  # Reese Byrne
+- P3T07:57 rebound A24  # Emery Moreau, 32-67
+37:07.0 P3T07:53 pb+A24SFB4 @(7,41)  # Emery Moreau, 34-67
+- P3T07:53 LA 22,24,4,45,6
+37:32.0 P3T07:53 ft+A24  # Emery Moreau, 35-67
+37:55.0 P3T07:34 2pt+B4 @(83,75)  # Taylor Ruiz, 35-69
+38:12.0 P3T07:14 2pt+A45+24 @(13,63)  # Parker Voss, 37-69
+38:24.0 P3T07:02 2pt+B5+17 @(93,72)  # Kai Reeves, 37-71
+38:38.0 P3T06:48 3pt+A24+6 @(28,18)  # Emery Moreau, 40-71
+- P3T06:39 df B17 @(68,46)  # Reese Byrne, 40-71
+- P3T06:39 LA 22,24,3,45,6
+- P3T06:39 LB 17,21,4,5,8
+- P3T06:30 to A24 stl B17 @(3,70)  # Emery Moreau, 40-71
+- P3T06:20 to B17 @(94,46)  # Reese Byrne, 40-71
+- P3T06:15 # timeout B  # Hayden Clay Pioneers
+40:36.0 P3T05:55 2pt+A3 @(5,62)  # Quinn Hale, 42-71
+40:45.0 P3T05:43 2pt+B17 @(86,60)  # Reese Byrne, 42-73
+41:09.0 P3T05:20 2pt+A22 @(22,51)  # Oakley Santos, 44-73
+- P3T04:57 2pt-B21 @(90,19)  # Blake Tanaka
+- P3T04:57 rebound A22  # Oakley Santos, 44-73
+41:41.0 P3T04:43 2pt+A3+24 @(9,19)  # Quinn Hale, 46-73
+- P3T04:27 2pt-B5 @(76,51)  # Kai Reeves
+- P3T04:27 rebound A3  # Quinn Hale, 46-73
+- P3T04:09 df B8 @(10,54)  # Ellis Novak, 46-73
+- P3T04:09 LA 24,3,45,5,6
+- P3T04:09 LB 17,21,4,7,8
+- P3T04:09 ft-A6  # Skyler Frost
+- P3T04:09 ft-A6  # Skyler Frost
+- P3T04:09 rebound B4  # Taylor Ruiz, 46-73
+- P3T03:59 df A45 @(89,46)  # Parker Voss, 46-73
+- P3T03:56 to B17  # Reese Byrne, 46-73
+- P3T03:50 3pt-A24 @(28,76)  # Emery Moreau
+- P3T03:50 rebound B7  # Avery Ngo, 46-73
+44:06.0 P3T03:43 3pt+B17+4 @(67,54)  # Reese Byrne, 46-76
+44:17.0 P3T03:15 2pt+A3+24 @(9,73)  # Quinn Hale, 48-76
+- P3T03:09 df A5 @(73,73)  # Dakota Cruz, 48-76
+- P3T03:00 2pt-B17 @(93,66)  # Reese Byrne
+- P3T03:00 rebound A3  # Quinn Hale, 48-76
+- P3T02:52 df B21 @(8,58)  # Blake Tanaka, 48-76
+45:23.0 P3T02:52 ft+A24  # Emery Moreau, 49-76
+- P3T02:52 ft-A24  # Emery Moreau
+- P3T02:52 rebound A24  # Emery Moreau, 49-76
+45:42.0 P3T02:46 pb+A24 @(9,43)  # Emery Moreau, 51-76
+- P3T02:37 df A24 @(94,60)  # Emery Moreau, 51-76
+- P3T02:37 LA 3,4,5,50,6
+- P3T02:37 ft-B4  # Taylor Ruiz
+46:31.0 P3T02:37 ft+B4  # Taylor Ruiz, 51-77
+- P3T02:16 3pt-A5 @(27,83)  # Dakota Cruz
+- P3T02:16 rebound B8  # Ellis Novak, 51-77
+- P3T02:12 df A6 @(33,17)  # Skyler Frost, 51-77
+- P3T02:12 LB 17,23,4,7,8
+47:33.0 P3T02:12 ft+B4  # Taylor Ruiz, 51-78
+47:49.0 P3T02:12 ft+B4  # Taylor Ruiz, 51-79
+- P3T01:57 2pt-A3 @(9,80)  # Quinn Hale
+- P3T01:57 rebound B7  # Avery Ngo, 51-79
+- P3T01:46 2pt-B7 @(87,53)  # Avery Ngo
+- P3T01:46 rebound B23  # Lennox Kemp, 51-79
+- P3T01:43 df A5 @(89,84)  # Dakota Cruz, 51-79
+- P3T01:43 LA 22,3,4,50,6
+48:41.0 P3T01:43 ft+B23  # Lennox Kemp, 51-80
+- P3T01:43 ft-B23  # Lennox Kemp
+- P3T01:43 rebound A4  # Morgan Okafor, 51-80
+- P3T01:30 3pt-A22 @(20,93)  # Oakley Santos
+- P3T01:30 rebound B7  # Avery Ngo, 51-80
+- P3T01:22 df A4 @(76,84)  # Morgan Okafor, 51-80
+- P3T01:22 ft-B4  # Taylor Ruiz
+- P3T01:22 ft-B4  # Taylor Ruiz
+- P3T01:22 rebound A4  # Morgan Okafor, 51-80
+- P3T01:09 2pt-A50 @(8,59)  # Harper Muir
+- P3T01:09 rebound B17  # Reese Byrne, 51-80
+50:05.0 P3T01:02 3pt+B7+4 @(80,8)  # Avery Ngo, 51-83
+50:27.0 P3T00:42 2pt+A4+3 @(6,43)  # Morgan Okafor, 53-83
+- P3T00:25 2pt-B17 @(89,45)  # Reese Byrne
+- P3T00:25 rebound B17  # Reese Byrne, 53-83
+- P3T00:22 df A3 @(87,45)  # Quinn Hale, 53-83
+- P3T00:22 LB 17,23,3,7,8
+- P3T00:22 ft-B17  # Reese Byrne
+51:28.0 P3T00:22 ft+B17  # Reese Byrne, 53-84
+- P3T00:07 df B17 @(12,59)  # Reese Byrne, 53-84
+- P3T00:07 ft-A4  # Morgan Okafor
+- P3T00:07 ft-A4  # Morgan Okafor
+- P3T00:07 rebound B17  # Reese Byrne, 53-84
+- P3T00:00 # end period 3
+- P4T09:54 LA 17,3,5,50,6
+- P4T09:54 LB 21,23,5,7,8
+- P4T09:45 2pt-B21 @(94,27)  # Blake Tanaka
+- P4T09:45 rebound A17  # Kit Pham, 53-84
+53:03.0 P4T09:19 2pt+A3+50 @(8,41)  # Quinn Hale, 55-84
+- P4T09:07 df A17 @(83,68)  # Kit Pham, 55-84
+- P4T08:54 to B23 stl A3 @(83,79)  # Lennox Kemp, 55-84
+54:05.0 P4T08:35 3pt+A6+3 @(15,5)  # Skyler Frost, 58-84
+- P4T08:25 3pt-B21 @(78,8)  # Blake Tanaka
+- P4T08:25 rebound B21  # Blake Tanaka, 58-84
+54:19.0 P4T08:20 pb+B21SFA50 @(93,59)  # Blake Tanaka, 58-86
+- P4T08:20 LA 17,24,3,5,50
+54:45.0 P4T08:20 ft+B21  # Blake Tanaka, 58-87
+55:03.0 P4T08:07 2pt+A5 @(6,40)  # Dakota Cruz, 60-87
+- P4T07:57 to B5 @(51,54)  # Kai Reeves, 60-87
+- P4T07:43 3pt-A24 @(32,51)  # Emery Moreau
+- P4T07:43 rebound B5  # Kai Reeves, 60-87
+- P4T07:29 3pt-B21 @(73,76)  # Blake Tanaka
+- P4T07:29 rebound A3  # Quinn Hale, 60-87
+- P4T07:18 2pt-A24 @(6,40)  # Emery Moreau
+- P4T07:18 rebound A  # Logan Park, 60-87
+- P4T06:57 2pt-A3 @(8,40)  # Quinn Hale
+- P4T06:57 rebound B7  # Avery Ngo, 60-87
+- P4T06:50 2pt-B5 BLA3 @(88,57)  # Kai Reeves
+- P4T06:50 rebound B  # Hayden Clay Pioneers, 60-87
+- P4T06:44 2pt-B7 @(90,10)  # Avery Ngo
+- P4T06:44 rebound A5  # Dakota Cruz, 60-87
+57:07.0 P4T06:41 2pt+A17+24SFB23 @(6,57)  # Kit Pham, 62-87
+- P4T06:41 ft-A17  # Kit Pham
+- P4T06:41 rebound B8  # Ellis Novak, 62-87
+- P4T06:33 to B23 stl A3 @(67,81)  # Lennox Kemp, 62-87
+- P4T06:27 2pt-A24 @(6,78)  # Emery Moreau
+- P4T06:27 rebound B8  # Ellis Novak, 62-87
+- P4T06:11 to B7 stl A17 @(82,45)  # Avery Ngo, 62-87
+- P4T06:03 2pt-A17 @(15,42)  # Kit Pham
+- P4T06:03 rebound B5  # Kai Reeves, 62-87
+58:39.0 P4T05:48 2pt+B8 @(91,39)  # Ellis Novak, 62-89
+- P4T05:46 # timeout A  # Logan Park
+- P4T05:39 LB 17,21,23,4,5
+- P4T05:32 df B5 @(2,42)  # Kai Reeves, 62-89
+- P4T05:28 2pt-A3 @(15,49)  # Quinn Hale
+- P4T05:28 rebound B23  # Lennox Kemp, 62-89
+- P4T05:14 2pt-B5 @(79,42)  # Kai Reeves
+- P4T05:14 rebound A50  # Harper Muir, 62-89
+- P4T05:02 2pt-A5 @(7,67)  # Dakota Cruz
+- P4T05:02 rebound B17  # Reese Byrne, 62-89
+- P4T04:49 2pt-B5 BLA3 @(90,62)  # Kai Reeves
+- P4T04:49 rebound B4  # Taylor Ruiz, 62-89
+- P4T04:42 3pt-B23 @(71,75)  # Lennox Kemp
+- P4T04:42 rebound A3  # Quinn Hale, 62-89
+- P4T04:35 3pt-A24 @(30,32)  # Emery Moreau
+- P4T04:35 rebound A50  # Harper Muir, 62-89
+- P4T04:25 2pt-A3 @(24,50)  # Quinn Hale
+- P4T04:25 rebound A3  # Quinn Hale, 62-89
+61:09.0 P4T04:18 pb+A3 @(22,63)  # Quinn Hale, 64-89
+61:30.0 P4T03:59 2pt+B21+17 @(91,43)  # Blake Tanaka, 64-91
+61:39.0 P4T03:48 2pt+A24 @(3,65)  # Emery Moreau, 66-91
+- P4T03:34 3pt-B23 @(84,94)  # Lennox Kemp
+- P4T03:34 rebound A5  # Dakota Cruz, 66-91
+62:11.0 P4T03:21 2pt+A3+5SFB23 @(6,58)  # Quinn Hale, 68-91
+- P4T03:21 LB 17,21,4,5,7
+- P4T03:21 ft-A3  # Quinn Hale
+- P4T03:21 rebound B5  # Kai Reeves, 68-91
+- P4T03:14 to B4 stl A50 @(82,41)  # Taylor Ruiz, 68-91
+63:09.0 P4T02:58 2pt+A3 @(10,45)  # Quinn Hale, 70-91
+- P4T02:47 2pt-B21 @(86,21)  # Blake Tanaka
+- P4T02:47 rebound B5  # Kai Reeves, 70-91
+63:13.0 P4T02:41 pb+B5 @(95,50)  # Kai Reeves, 70-93
+63:27.0 P4T02:31 2pt+A3+24 @(10,89)  # Quinn Hale, 72-93
+- P4T02:19 df A24 @(79,43)  # Emery Moreau, 72-93
+- P4T02:19 LA 17,3,4,5,50
+- P4T02:19 LB 3,4,5,7,8
+- P4T02:19 # timeout A  # Logan Park
+- P4T02:12 3pt-B7 @(68,57)  # Avery Ngo
+- P4T02:12 rebound B5  # Kai Reeves, 72-93
+64:31.0 P4T02:09 pb+B5 @(95,50)  # Kai Reeves, 72-95
+64:51.0 P4T01:50 2pt+A4 @(10,53)  # Morgan Okafor, 74-95
+- P4T01:32 to B4 @(94,36)  # Taylor Ruiz, 74-95
+- P4T01:32 LB 23,3,5,7,8
+- P4T01:16 to A3 stl B8 @(2,60)  # Quinn Hale, 74-95
+- P4T01:05 to B3 stl A50 @(67,11)  # Jordan Webb, 74-95
+- P4T00:52 2pt-A5 BLB5 @(3,40)  # Dakota Cruz
+- P4T00:52 rebound A17  # Kit Pham, 74-95
+66:22.0 P4T00:50 pb+A17 @(4,41)  # Kit Pham, 76-95
+- P4T00:50 LB 12,23,4,7,8
+- P4T00:50 3pt-A17 @(63,74)  # Kit Pham
+- P4T00:50 rebound B23  # Lennox Kemp, 76-95
+- P4T00:50 2pt-A3 @(13,53)  # Quinn Hale
+- P4T00:50 rebound B23  # Lennox Kemp, 76-95
+- P4T00:36 to B8 stl A5 @(34,71)  # Ellis Novak, 76-95
+- P4T00:36 ft-A5  # Dakota Cruz
+67:46.0 P4T00:36 ft+A5  # Dakota Cruz, 77-95
+- P4T00:24 to A17 stl B7 @(9,83)  # Kit Pham, 77-95
+- P4T00:00 # end period 4

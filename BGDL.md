@@ -192,7 +192,7 @@ As described above, the following additional event types may be recorded as part
 
 ##### Regions and Locations
 
-Shot locations (and locations of other events such as rebounds) can be specified in one of two ways, which may be used independently or together on the same event:
+Locations can optionally be specified on any event where court position is meaningful: shot attempts, rebounds, fouls, turnovers, steals, violations (travel, out of bounds). Locations are not meaningful on free throws, timeouts, or substitutions. Two formats are supported, which may be used independently or together on the same event:
 
 **Absolute coordinates** use the syntax `@(x,y)` where x and y are integers 0–100. These represent a fixed full-court position from a consistent external reference point (typically a sideline camera):
 

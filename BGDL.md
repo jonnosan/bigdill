@@ -236,6 +236,9 @@ The two coordinate columns assume:
 | TP | Top Paint — inside key, top third closest to free throw line | 2pt zone | (15, 50) | (85, 50) |
 | RP | Right Paint — inside key, attacker's right third | 2pt zone | (10, 62) | (90, 38) |
 | RIM | Rim — inside key, nearest to basket, between LP and RP | 2pt zone | (4, 50) | (96, 50) |
+| BC | Backcourt — the half of the court that the attacking team is defending | n/a | (75, 50) | (25, 50) |
+
+Note: the `BC` region covers the entire defensive half of the attacking team. It is primarily useful for non-shot events (turnovers, fouls, steals, violations) that occur before the ball crosses half court. Named regions other than `BC` always refer to the attacking half court. For events in the backcourt, only `BC` or absolute `@(x,y)` coordinates should be used — the other named regions are not applicable.
 
 #### Fouls
 

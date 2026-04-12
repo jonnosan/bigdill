@@ -358,13 +358,19 @@ def verify_bgdl(filepath, strict=False):
     if roster_b and len(roster_b) < 5 and strict:
         warn(0, f"Team B roster has only {len(roster_b)} players (expected at least 5)")
 
-    # Check free throw sequences (ft should follow a shooting foul)
+    # Check free throw sequences (ft should follow a foul, another ft, or a shot with SF)
+    # Skip non-play events (lineups, clock, timeout) when looking backward
+    SKIP_TYPES = {'lineup', 'clock'}
     for i, evt in enumerate(events):
         if evt['type'] == 'shot' and evt.get('shot_type') == 'ft':
-            # Look back for a shooting foul or another ft
-            if i > 0 and events[i-1]['type'] not in ('shot', 'foul'):
-                if strict:
-                    warn(evt['line'], "Free throw not preceded by a shooting foul or another free throw")
+            # Walk backward past lineups and clock events to find the real predecessor
+            j = i - 1
+            while j >= 0 and events[j]['type'] in SKIP_TYPES:
+                j -= 1
+            if j >= 0 and events[j]['type'] in ('shot', 'foul'):
+                continue  # preceded by a shot (with SF) or foul — OK
+            if strict:
+                warn(evt['line'], "Free throw not preceded by a foul or another free throw")
 
     return issues
 

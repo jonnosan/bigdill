@@ -22,7 +22,7 @@ SHOT_MODIFIERS = {'SF', 'UF', 'DQ', 'BL'}
 FOUL_TYPES = {'df', 'of', 'tf', 'uf', 'dq'}
 VIOLATION_TYPES = {'travel', 'out', 'back', 'double', 'shotclock', '3s', '5s', '8s'}
 CLOCK_EVENTS = {'start', 'stop', 'sync', 'timeout'}
-OTHER_EVENTS = {'rebound', 'to', 'stl', 'def', 'jumpball', 'score', 'ast', 'blk'}
+OTHER_EVENTS = {'rebound', 'to', 'stl', 'def', 'jumpball', 'score'}
 LINEUP_EVENTS = {'la', 'lb'}
 
 ALL_EVENT_TYPES = SHOT_TYPES | FOUL_TYPES | VIOLATION_TYPES | CLOCK_EVENTS | OTHER_EVENTS | LINEUP_EVENTS
@@ -311,16 +311,6 @@ def verify_bgdl(filepath, strict=False):
         # Standalone steal
         if event_token == 'stl':
             events.append({'line': line_num, 'type': 'steal'})
-            continue
-
-        # Standalone assist (hand-tagged format)
-        if event_token == 'ast':
-            events.append({'line': line_num, 'type': 'assist'})
-            continue
-
-        # Standalone block (hand-tagged format)
-        if event_token == 'blk':
-            events.append({'line': line_num, 'type': 'block'})
             continue
 
         # Deflection

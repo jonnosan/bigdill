@@ -94,6 +94,50 @@ RB14 Sam Park
 
 Any other information about players or teams that does not fit the structured roster format above may be included as free-form comments in the header using the standard `#` comment syntax.
 
+### Box Score
+
+Box score lines provide per-player and per-team aggregate statistics. They are optional and may be included in the header after roster records. A game may have box score data without any game event detail records (e.g. when only aggregate statistics are available from a scoring system).
+
+A box score line consists of `BS` followed immediately by the team letter (`A` or `B`), optionally followed immediately by a jersey number. If a jersey number is present, the line describes an individual player. If no jersey number is present, the line describes team totals. This is followed by whitespace and then one or more space-separated stat entries.
+
+Each stat entry consists of a stat key (from the table below), a colon, and a value. For shooting stats (2PM, 3PM, FTM), the value may be expressed as made/attempted (e.g. `3/7`) when attempt data is available, or as made only (e.g. `3`) when it is not. Plus/minus values should include the sign (e.g. `PM:+12` or `PM:-5`).
+
+Only stats that are known (non-null) should be included. A game with only a final score would have just team-level PTS entries. A game with full box score data would have player lines with all available stats, followed by team totals.
+
+| Stat Key | Meaning |
+| --- | --- |
+| PTS | Points scored |
+| 2PM | 2-point field goals made (optionally /attempted) |
+| 3PM | 3-point field goals made (optionally /attempted) |
+| FTM | Free throws made (optionally /attempted) |
+| OREB | Offensive rebounds |
+| DREB | Defensive rebounds |
+| REB | Total rebounds |
+| AST | Assists |
+| STL | Steals |
+| BLK | Blocks |
+| TO | Turnovers |
+| PF | Personal fouls |
+| TF | Technical fouls |
+| MIN | Minutes played |
+| PM | Plus/minus (include sign) |
+
+Example with full player stats and team totals:
+
+```
+# Box Score (Bankstown Bruins):
+BSA4  PTS:18 2PM:5/9 3PM:2/4 FTM:2/2 OREB:1 DREB:6 REB:7 AST:3 STL:1 BLK:0 TO:2 PF:3 MIN:28 PM:+12
+BSA7  PTS:12 2PM:4/8 3PM:0/3 FTM:4/5 OREB:0 DREB:3 REB:3 AST:5 STL:0 BLK:0 TO:1 PF:2 MIN:24 PM:-5
+BSA   PTS:72 2PM:24/42 3PM:6/18 FTM:6/10 OREB:8 DREB:22 REB:30 AST:16 STL:5 BLK:3 TO:12 PF:18
+```
+
+Example with only a final score:
+
+```
+BSA PTS:72
+BSB PTS:65
+```
+
 ## Game Event Detail Records
 
 A Game Event Detail Record consists of:
